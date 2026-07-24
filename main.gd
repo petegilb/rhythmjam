@@ -17,6 +17,8 @@ var next_beat_position = 0
 var current_song_position: float = 0.0
 var active_beat = -1
 
+var song1_inputs = [4.25]
+
 # referenced this video: https://www.youtube.com/watch?v=9XcLoEVnjrA
 
 func set_song(input_song: AudioStreamMP3) -> void:
@@ -41,12 +43,13 @@ func start_song():
 	music_player.play()
 	
 func update_song():
-	current_song_position = get_accurate_position()
+	current_song_position = music_player.get_playback_position()
 	if current_song_position >= next_beat_position:
 		last_beat += 1
 		song_beat.emit(last_beat)
 		next_beat_position += beat_duration_ms
 	# TODO update this to the song beats (where to press button inputs)	
+	
 	if current_song_position >= next_beat_position - INPUT_MARGIN:
 		if active_beat != next_beat_position:
 			active_beat = next_beat_position
@@ -61,12 +64,6 @@ func update_song():
 			input_success.emit()
 		else:
 			print("miss")
-
-func get_accurate_position() -> float:
-	var playback_pos: float = music_player.get_playback_position()
-	playback_pos += AudioServer.get_time_since_last_mix()
-	playback_pos -= AudioServer.get_output_latency()
-	return playback_pos
 
 func _ready() -> void:
 	set_song(song1)
