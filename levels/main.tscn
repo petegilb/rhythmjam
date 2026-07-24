@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://d3hjcx5p28i8t"]
+
+[ext_resource type="Script" uid="uid://barn6g7q5gsvo" path="res://main.gd" id="1_wdj6m"]
+[ext_resource type="PackedScene" uid="uid://dsdpdkm1wvli4" path="res://ui/ui.tscn" id="2_wdj6m"]
+
+[node name="Main" type="Node2D" unique_id=1758961681]
+script = ExtResource("1_wdj6m")
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="." unique_id=1844480474]
+
+[node name="Ui" parent="." unique_id=569277813 instance=ExtResource("2_wdj6m")]

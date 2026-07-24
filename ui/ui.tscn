@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://dsdpdkm1wvli4"]
+
+[ext_resource type="Script" uid="uid://bt6m6qr03rtoe" path="res://ui/ui.gd" id="1_nb4k0"]
+
+[node name="Ui" type="Control" unique_id=569277813]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_nb4k0")
+
+[node name="BeatVisual" type="ColorRect" parent="." unique_id=911946034]
+layout_mode = 0
+offset_left = 546.0
+offset_top = 290.0
+offset_right = 586.0
+offset_bottom = 330.0
+color = Color(0.84139216, 0.24031755, 0.17371842, 1)
