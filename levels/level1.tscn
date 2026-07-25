@@ -3,6 +3,9 @@
 [ext_resource type="Material" uid="uid://clvqlbgmnriyb" path="res://materials/walls.tres" id="1_pdtm5"]
 [ext_resource type="Material" uid="uid://drfvdnmqb4nt7" path="res://materials/pillar.tres" id="1_sjb42"]
 [ext_resource type="PackedScene" uid="uid://jtuip5htm07q" path="res://assets/crowd.glb" id="3_b3oru"]
+[ext_resource type="PackedScene" uid="uid://b3erx0sva6x6y" path="res://assets/record.glb" id="4_61w3m"]
+[ext_resource type="PackedScene" uid="uid://bl8b6x6mwrh0h" path="res://assets/turntable.glb" id="4_ua5ty"]
+[ext_resource type="PackedScene" uid="uid://145w4lranmv8" path="res://assets/bomb.glb" id="6_pdpul"]
 
 [sub_resource type="Environment" id="Environment_txtq1"]
 background_mode = 1
@@ -51,7 +54,7 @@ omni_range = 3.948
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5619948, 3.1521716, 1.9472857)
 light_color = Color(0.30712777, 0.80879617, 0.54214567, 1)
 shadow_enabled = true
-omni_range = 6.778
+omni_range = 5.131
 
 [node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=687955151]
 transform = Transform3D(0.8350112, -0.37709427, 0.40069482, 0, 0.7282275, 0.6853356, -0.55023307, -0.5722628, 0.60807806, 2.1163774, 3.7401352, 6.951937)
@@ -117,7 +120,15 @@ height = 5.052246
 material = ExtResource("1_sjb42")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1112953514]
-transform = Transform3D(1, 0, 0, 0, 0.9082381, 0.4184537, 0, -0.4184537, 0.9082381, -0.00041532516, 2.2043338, 7.2840476)
+transform = Transform3D(1, 0, 0, 0, 0.9082382, 0.41845372, 0, -0.41845372, 0.9082382, -0.00041532516, 2.166044, 7.252038)
+
+[node name="turntable" parent="." unique_id=1859603211 instance=ExtResource("4_ua5ty")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.008407444, 1.6639582, 6.7535315)
+
+[node name="record" parent="turntable" unique_id=1404329764 instance=ExtResource("4_61w3m")]
+
+[node name="bomb" parent="turntable" unique_id=727833021 instance=ExtResource("6_pdpul")]
+transform = Transform3D(0.30927673, 0.3800632, 0, -0.18114643, 0.14740805, 0.43076324, 0.33411682, -0.2718878, 0.23354481, -0.11670732, 0.16773987, -0.042134285)
 
 [node name="crowd" type="Node3D" parent="." unique_id=1661353956]
 
