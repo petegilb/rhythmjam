@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://barn6g7q5gsvo" path="res://main.gd" id="1_wdj6m"]
 [ext_resource type="PackedScene" uid="uid://dsdpdkm1wvli4" path="res://ui/ui.tscn" id="2_wdj6m"]
+[ext_resource type="PackedScene" uid="uid://bbnvgii0pgkur" path="res://levels/level1.tscn" id="3_l8qe7"]
 
 [node name="Main" type="Node2D" unique_id=1758961681]
 script = ExtResource("1_wdj6m")
@@ -11,3 +12,6 @@ script = ExtResource("1_wdj6m")
 [node name="SFXPlayer1" type="AudioStreamPlayer" parent="." unique_id=1548304228]
 
 [node name="Ui" parent="." unique_id=569277813 instance=ExtResource("2_wdj6m")]
+
+[node name="Level1" parent="." unique_id=359005921 instance=ExtResource("3_l8qe7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.607858)

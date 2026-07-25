@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://dsdpdkm1wvli4"]
 
 [ext_resource type="Script" uid="uid://bt6m6qr03rtoe" path="res://ui/ui.gd" id="1_nb4k0"]
+[ext_resource type="Texture2D" uid="uid://bwefue8k8qajn" path="res://assets/exclamation/exclamation.png" id="2_ks8t7"]
+[ext_resource type="Texture2D" uid="uid://dlicb82xm5ay6" path="res://assets/exclamation/exclamation_shape.png" id="3_wl5ax"]
 
 [node name="Ui" type="Control" unique_id=569277813]
 layout_mode = 3
@@ -18,3 +20,21 @@ offset_top = 290.0
 offset_right = 586.0
 offset_bottom = 330.0
 color = Color(0.843, 0.239, 0.173, 1)
+
+[node name="Exclamation" type="TextureRect" parent="." unique_id=315653614]
+layout_mode = 0
+offset_left = 1268.0
+offset_top = 231.0
+offset_right = 1403.0
+offset_bottom = 366.0
+texture = ExtResource("2_ks8t7")
+expand_mode = 1
+
+[node name="ExclamationShape" type="TextureRect" parent="." unique_id=1363334376]
+layout_mode = 0
+offset_left = 170.0
+offset_top = 231.0
+offset_right = 305.0
+offset_bottom = 366.0
+texture = ExtResource("3_wl5ax")
+expand_mode = 1
