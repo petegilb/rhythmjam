@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://cj0h2a1pa4vb6"]
+
+[ext_resource type="Texture2D" uid="uid://cm18pcxfktkm3" path="res://assets/crowd_FaceHappy.png" id="1_hppb4"]
+
+[resource]
+resource_name = "SkinM"
+cull_mode = 2
+albedo_texture = ExtResource("1_hppb4")
+roughness = 0.6318182

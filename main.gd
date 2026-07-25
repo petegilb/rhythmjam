@@ -26,6 +26,8 @@ var active_beat = -1
 # sfx
 var disappointment: AudioStreamMP3 = preload("res://music/RhythmGame Disappointment.mp3")
 var one_two_three: AudioStreamMP3 = preload("res://music/RhythmGame 1,2,3 Go!.mp3")
+var ok_sfx: AudioStreamMP3 = preload("res://music/RhythmGame Correct Input.mp3")
+var miss_sfx: AudioStreamMP3 = preload("res://music/RhythmGame Incorrect Input.mp3")
 
 # referenced this video: https://www.youtube.com/watch?v=9XcLoEVnjrA
 
@@ -103,8 +105,9 @@ func update_song():
 		if active_beat != -1:
 			print("ok!")
 			input_success.emit()
+			play_sfx(ok_sfx)
 		else:
-			play_sfx(disappointment)
+			play_sfx(miss_sfx)
 			print("miss")
 
 func _ready() -> void:

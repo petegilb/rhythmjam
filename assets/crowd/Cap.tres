@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://c3v7sv458lavw"]
+
+[resource]
+resource_name = "Cap"
+cull_mode = 2
+albedo_color = Color(0.037454605, 0.0024575167, 0.098923504, 1)
+roughness = 0.9090909

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://67ph3fqc6cgi"
+path="res://.godot/imported/RhythmGame Correct Input.mp3-021895fc82968dccf30d96e5ecf5533d.mp3str"
+
+[deps]
+
+source_file="res://music/RhythmGame Correct Input.mp3"
+dest_files=["res://.godot/imported/RhythmGame Correct Input.mp3-021895fc82968dccf30d96e5ecf5533d.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
