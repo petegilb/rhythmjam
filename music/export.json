@@ -1,0 +1,530 @@
+{
+	"bgm": "DJ Track cue reference.mp3",
+	"bpm": "108",
+	"offset": "0",
+	"charts": [
+		{
+			"uuid": "7b4cf891-09ff-4835-addf-570c63d3fe88",
+			"name": "Chart",
+			"laneCount": 4,
+			"notes": [
+				{
+					"uuid": "50246b25-3ab5-400e-8c4b-df5d8b71b2cc",
+					"songPos": 9583.333333333334,
+					"beat": 17.25,
+					"lanePos": 0.125
+				},
+				{
+					"uuid": "98a74e92-d7dd-4ac8-9488-d23dbee05fe3",
+					"songPos": 10694.444444444445,
+					"beat": 19.25,
+					"lanePos": 0.125
+				},
+				{
+					"uuid": "6340ae23-a9c6-4b20-9dca-86828d30145a",
+					"songPos": 11805.555555555555,
+					"beat": 21.25,
+					"lanePos": 0.125
+				},
+				{
+					"uuid": "19219d0e-851a-48cd-8580-1537c2d0fdfc",
+					"songPos": 12638.888888888889,
+					"beat": 22.75,
+					"lanePos": 0.125
+				},
+				{
+					"uuid": "13c53ef7-9e18-4206-90a0-0606372f9533",
+					"songPos": 12916.666666666666,
+					"beat": 23.25,
+					"lanePos": 0.125
+				},
+				{
+					"uuid": "c35da3c9-5024-4799-8fc6-0ee1cfbe0f23",
+					"songPos": 14027.777777777777,
+					"beat": 25.25,
+					"lanePos": 0.125
+				},
+				{
+					"uuid": "e9334b28-9f8b-47e5-b088-779248320cd6",
+					"songPos": 15138.888888888889,
+					"beat": 27.25,
+					"lanePos": 0.125
+				},
+				{
+					"uuid": "33a63f7a-3f25-4ddb-808f-6435723532f0",
+					"songPos": 16250,
+					"beat": 29.25,
+					"lanePos": 0.125
+				},
+				{
+					"uuid": "88e5a89d-dc9f-40ad-baf7-719a9de7f4c7",
+					"songPos": 17083.333333333332,
+					"beat": 30.75,
+					"lanePos": 0.125
+				},
+				{
+					"uuid": "924476a0-8a3b-4946-bc95-7621dd3da081",
+					"songPos": 17361.11111111111,
+					"beat": 31.25,
+					"lanePos": 0.125
+				},
+				{
+					"uuid": "83dcd56f-387b-4e8b-8fcf-e6a41a6bfe44",
+					"songPos": 18472.222222222223,
+					"beat": 33.25,
+					"lanePos": 0.125
+				},
+				{
+					"uuid": "b1e35e74-740a-4482-9764-c70c43a2924d",
+					"songPos": 19583.333333333332,
+					"beat": 35.25,
+					"lanePos": 0.125
+				},
+				{
+					"uuid": "c3635261-d5c5-4e81-87b0-a82c0e59d0e8",
+					"songPos": 20694.444444444445,
+					"beat": 37.25,
+					"lanePos": 0.125
+				},
+				{
+					"uuid": "bafde41c-39d1-446c-bc5c-3f4ef6ada9a4",
+					"songPos": 21805.555555555555,
+					"beat": 39.25,
+					"lanePos": 0.125
+				},
+				{
+					"uuid": "8be8e29d-219d-4e18-a861-49acd40561d1",
+					"songPos": 22916.666666666668,
+					"beat": 41.25,
+					"lanePos": 0.125
+				},
+				{
+					"uuid": "3738183b-0396-4fec-9b78-75c16125fe0e",
+					"songPos": 25138.88888888889,
+					"beat": 45.25,
+					"lanePos": 0.125
+				},
+				{
+					"uuid": "088184ad-3d5e-4c87-bc78-6591d1d98b57",
+					"songPos": 25972.222222222223,
+					"beat": 46.75,
+					"lanePos": 0.125
+				},
+				{
+					"uuid": "6de18edf-e817-4cb8-8c82-6067e8550ff9",
+					"songPos": 26250,
+					"beat": 47.25,
+					"lanePos": 0.125
+				},
+				{
+					"uuid": "93d80794-b979-41aa-a554-3358977cef49",
+					"songPos": 26527.777777777777,
+					"beat": 47.75,
+					"lanePos": 0.125
+				},
+				{
+					"uuid": "060f4937-ae3b-4d6b-b1d4-5a4c3aaf3f9c",
+					"songPos": 26805.555555555555,
+					"beat": 48.25,
+					"lanePos": 0.125
+				},
+				{
+					"uuid": "ed3c7a8c-0ac9-434e-9c76-15159fff95d9",
+					"songPos": 27638.88888888889,
+					"beat": 49.75,
+					"lanePos": 0.125
+				},
+				{
+					"uuid": "4c7683c6-9664-41a1-b52b-14abf1e204cc",
+					"songPos": 28472.222222222223,
+					"beat": 51.25,
+					"lanePos": 0.125
+				},
+				{
+					"uuid": "d3a144d3-0ba9-4531-bad2-e86ebf69a951",
+					"songPos": 30694.444444444445,
+					"beat": 55.25,
+					"lanePos": 0.125
+				},
+				{
+					"uuid": "41557236-b73d-4809-8eca-592e5ae0f495",
+					"songPos": 31527.777777777777,
+					"beat": 56.75,
+					"lanePos": 0.125
+				},
+				{
+					"uuid": "94500a30-5cc2-4652-b7fc-ba0208d5b357",
+					"songPos": 31805.555555555555,
+					"beat": 57.25,
+					"lanePos": 0.125
+				},
+				{
+					"uuid": "12e939df-d039-4b5c-a707-ff223db253c0",
+					"songPos": 32916.666666666664,
+					"beat": 59.25,
+					"lanePos": 0.125
+				},
+				{
+					"uuid": "59913cd3-e1a1-4054-b020-a142b5ed5511",
+					"songPos": 34027.77777777778,
+					"beat": 61.25,
+					"lanePos": 0.125
+				},
+				{
+					"uuid": "d1837cbb-a2db-40c4-a009-9577824b2694",
+					"songPos": 34861.11111111111,
+					"beat": 62.75,
+					"lanePos": 0.125
+				},
+				{
+					"uuid": "ce3f2801-fa93-41a7-8e9c-943adb4286d8",
+					"songPos": 35138.88888888889,
+					"beat": 63.25,
+					"lanePos": 0.125
+				},
+				{
+					"uuid": "dcaf0d44-8eb2-4228-839a-275ddbe583bd",
+					"songPos": 36250,
+					"beat": 65.25,
+					"lanePos": 0.125
+				},
+				{
+					"uuid": "1d4c5ed7-1140-4115-921a-e36bef4eeef9",
+					"songPos": 37361.11111111111,
+					"beat": 67.25,
+					"lanePos": 0.125
+				},
+				{
+					"uuid": "a101af2e-b3d4-4d8b-8377-bbd5879212e2",
+					"songPos": 38472.22222222222,
+					"beat": 69.25,
+					"lanePos": 0.125
+				},
+				{
+					"uuid": "30ea65c2-b508-496e-b48c-71aa5449ddbb",
+					"songPos": 39305.555555555555,
+					"beat": 70.75,
+					"lanePos": 0.125
+				},
+				{
+					"uuid": "c8fa4ea3-a73a-48da-b3f5-57683929bd2e",
+					"songPos": 39583.333333333336,
+					"beat": 71.25,
+					"lanePos": 0.125
+				},
+				{
+					"uuid": "181a076d-cf02-47b6-b537-00e505a634bd",
+					"songPos": 40694.444444444445,
+					"beat": 73.25,
+					"lanePos": 0.125
+				},
+				{
+					"uuid": "5bb56042-bd33-417a-bb83-f3e5c17aa052",
+					"songPos": 41805.555555555555,
+					"beat": 75.25,
+					"lanePos": 0.125
+				},
+				{
+					"uuid": "487239de-590b-4c46-ba88-c9300856ea8f",
+					"songPos": 42916.666666666664,
+					"beat": 77.25,
+					"lanePos": 0.125
+				},
+				{
+					"uuid": "39011e74-636d-4d7b-b08b-ddf28e5b840b",
+					"songPos": 43194.444444444445,
+					"beat": 77.75,
+					"lanePos": 0.125
+				},
+				{
+					"uuid": "7cfd6710-8f46-46f1-aad3-50023c91c4c1",
+					"songPos": 43472.22222222222,
+					"beat": 78.25,
+					"lanePos": 0.125
+				},
+				{
+					"uuid": "c018c45f-e7da-4447-b39b-6a08dc5da410",
+					"songPos": 43750,
+					"beat": 78.75,
+					"lanePos": 0.125
+				},
+				{
+					"uuid": "92202426-6e43-45c6-be5f-7fb37a994655",
+					"songPos": 44027.77777777778,
+					"beat": 79.25,
+					"lanePos": 0.125
+				},
+				{
+					"uuid": "373f370f-1e64-4944-b659-66478f308802",
+					"songPos": 44305.555555555555,
+					"beat": 79.75,
+					"lanePos": 0.125
+				},
+				{
+					"uuid": "6f1d70a3-e7f2-4131-a435-9a6dca3d2f4e",
+					"songPos": 45138.88888888889,
+					"beat": 81.25,
+					"lanePos": 0.125
+				},
+				{
+					"uuid": "25fc5737-c454-4c7e-bd8d-cc1123c64dfa",
+					"songPos": 46250,
+					"beat": 83.25,
+					"lanePos": 0.125
+				},
+				{
+					"uuid": "944b36ec-06ff-483c-b80b-695a9466f4c9",
+					"songPos": 47361.11111111111,
+					"beat": 85.25,
+					"lanePos": 0.125
+				},
+				{
+					"uuid": "86c9fe4c-b717-4701-9e36-b18438db0a3e",
+					"songPos": 48194.444444444445,
+					"beat": 86.75,
+					"lanePos": 0.125
+				},
+				{
+					"uuid": "5b67f084-a9be-4631-bae5-d08938615293",
+					"songPos": 48472.22222222222,
+					"beat": 87.25,
+					"lanePos": 0.125
+				},
+				{
+					"uuid": "e2f6d0a3-2cc6-4c1e-a7bb-b55cb6f6f58d",
+					"songPos": 49583.333333333336,
+					"beat": 89.25,
+					"lanePos": 0.125
+				},
+				{
+					"uuid": "2b755e0d-ca45-411e-b092-1e066c7dd643",
+					"songPos": 50694.444444444445,
+					"beat": 91.25,
+					"lanePos": 0.125
+				},
+				{
+					"uuid": "e5f9d2db-694d-4a15-8010-3f85a7727f3f",
+					"songPos": 51805.555555555555,
+					"beat": 93.25,
+					"lanePos": 0.125
+				},
+				{
+					"uuid": "81e4222e-719c-4557-be8a-b4849d59496b",
+					"songPos": 52638.88888888889,
+					"beat": 94.75,
+					"lanePos": 0.125
+				},
+				{
+					"uuid": "b9a3dd74-a773-4d28-a031-9126017831dc",
+					"songPos": 52916.666666666664,
+					"beat": 95.25,
+					"lanePos": 0.125
+				},
+				{
+					"uuid": "cf1eb7ea-799e-453d-a99c-8786364b98e7",
+					"songPos": 54027.77777777778,
+					"beat": 97.25,
+					"lanePos": 0.125
+				},
+				{
+					"uuid": "67b59b0d-3a8c-4ecb-88dc-aa60f9cc027d",
+					"songPos": 55138.88888888889,
+					"beat": 99.25,
+					"lanePos": 0.125
+				},
+				{
+					"uuid": "f7d0ffc5-0817-4b67-b7a8-b4130c3f3a7d",
+					"songPos": 56250,
+					"beat": 101.25,
+					"lanePos": 0.125
+				},
+				{
+					"uuid": "5494a437-40c9-452e-a00b-3f5f766abd57",
+					"songPos": 57361.11111111111,
+					"beat": 103.25,
+					"lanePos": 0.125
+				},
+				{
+					"uuid": "d76124f2-e471-4631-a78c-60b1279f531c",
+					"songPos": 58472.22222222222,
+					"beat": 105.25,
+					"lanePos": 0.125
+				},
+				{
+					"uuid": "b0a4fe3f-4d81-4598-bc37-386a28f6a523",
+					"songPos": 59583.333333333336,
+					"beat": 107.25,
+					"lanePos": 0.125
+				},
+				{
+					"uuid": "1f4e628c-2a18-4a49-ad95-42b6dcf9998a",
+					"songPos": 60694.444444444445,
+					"beat": 109.25,
+					"lanePos": 0.125
+				},
+				{
+					"uuid": "891f4a01-0bd9-4fd2-8c61-164a1524777c",
+					"songPos": 61527.77777777778,
+					"beat": 110.75,
+					"lanePos": 0.125
+				},
+				{
+					"uuid": "8242cb4c-a795-44b3-a52b-c8080ababecd",
+					"songPos": 61805.555555555555,
+					"beat": 111.25,
+					"lanePos": 0.125
+				},
+				{
+					"uuid": "cf44b9d8-aeb3-4249-9f74-27b7d6b5ac8f",
+					"songPos": 62083.333333333336,
+					"beat": 111.75,
+					"lanePos": 0.125
+				},
+				{
+					"uuid": "90e1c225-ad5c-42c0-9fc7-77a8dd5eb257",
+					"songPos": 62361.11111111111,
+					"beat": 112.25,
+					"lanePos": 0.125
+				},
+				{
+					"uuid": "328ebeab-e545-4964-91ba-34b8009a3449",
+					"songPos": 63194.444444444445,
+					"beat": 113.75,
+					"lanePos": 0.125
+				},
+				{
+					"uuid": "463184ce-18bc-431a-bbb8-8300eb70cd19",
+					"songPos": 64027.77777777778,
+					"beat": 115.25,
+					"lanePos": 0.125
+				},
+				{
+					"uuid": "f1762445-3098-4da4-bf97-90b81d5021e4",
+					"songPos": 65138.88888888889,
+					"beat": 117.25,
+					"lanePos": 0.125
+				},
+				{
+					"uuid": "32fda35e-7bfb-4faa-860d-2ff848e8ee9f",
+					"songPos": 66250,
+					"beat": 119.25,
+					"lanePos": 0.125
+				},
+				{
+					"uuid": "510b3974-8f66-4ae2-a533-8e2c3b6a65a9",
+					"songPos": 67083.33333333333,
+					"beat": 120.75,
+					"lanePos": 0.125
+				},
+				{
+					"uuid": "f7f7b48c-87f4-433c-8cce-f65dd82b6305",
+					"songPos": 67361.11111111111,
+					"beat": 121.25,
+					"lanePos": 0.125
+				},
+				{
+					"uuid": "e9967e8b-65f7-4213-a142-e46f0b994047",
+					"songPos": 68472.22222222222,
+					"beat": 123.25,
+					"lanePos": 0.125
+				},
+				{
+					"uuid": "83e34ab9-44a1-4a28-a07a-738da621ea9c",
+					"songPos": 69583.33333333333,
+					"beat": 125.25,
+					"lanePos": 0.125
+				},
+				{
+					"uuid": "ee46eea0-bd43-4ba4-a754-1442bc01ebc4",
+					"songPos": 70416.66666666667,
+					"beat": 126.75,
+					"lanePos": 0.125
+				},
+				{
+					"uuid": "da2c8898-6528-47fa-be91-4b36e3dfa743",
+					"songPos": 70694.44444444444,
+					"beat": 127.25,
+					"lanePos": 0.125
+				},
+				{
+					"uuid": "8c4fc351-8de7-42d8-9828-384e52e52eb4",
+					"songPos": 71805.55555555556,
+					"beat": 129.25,
+					"lanePos": 0.125
+				},
+				{
+					"uuid": "3dbdd5b8-91cc-43d5-aaca-a7d75c3754c2",
+					"songPos": 72916.66666666667,
+					"beat": 131.25,
+					"lanePos": 0.125
+				},
+				{
+					"uuid": "c92c564e-ee73-4266-b0a5-944aa3c30195",
+					"songPos": 74027.77777777778,
+					"beat": 133.25,
+					"lanePos": 0.125
+				},
+				{
+					"uuid": "50732237-055a-42bf-91c8-52323cc88f10",
+					"songPos": 74861.11111111111,
+					"beat": 134.75,
+					"lanePos": 0.125
+				},
+				{
+					"uuid": "e7cb277d-270f-4d8b-9eff-4136b0b084d4",
+					"songPos": 75138.88888888889,
+					"beat": 135.25,
+					"lanePos": 0.125
+				},
+				{
+					"uuid": "0fb52a87-56a5-4922-b1f6-2f1262c5c1e3",
+					"songPos": 76250,
+					"beat": 137.25,
+					"lanePos": 0.125
+				},
+				{
+					"uuid": "7da262ce-0235-444a-b51e-b70a3bcdc706",
+					"songPos": 77361.11111111111,
+					"beat": 139.25,
+					"lanePos": 0.125
+				},
+				{
+					"uuid": "3bc011dd-b40e-48f3-b7c7-0ee04105131a",
+					"songPos": 78472.22222222222,
+					"beat": 141.25,
+					"lanePos": 0.125
+				},
+				{
+					"uuid": "f8990b0a-41b4-4e5f-9ecf-05dbb8d622a9",
+					"songPos": 78750,
+					"beat": 141.75,
+					"lanePos": 0.125
+				},
+				{
+					"uuid": "ff89656a-cc31-4990-a7c0-e92a31d2f7d1",
+					"songPos": 79027.77777777778,
+					"beat": 142.25,
+					"lanePos": 0.125
+				},
+				{
+					"uuid": "8e598ca9-907d-4215-87bc-701313f2a3e0",
+					"songPos": 79305.55555555556,
+					"beat": 142.75,
+					"lanePos": 0.125
+				},
+				{
+					"uuid": "d6bdc14b-b6e2-4dd3-847c-9b9e07b8ed14",
+					"songPos": 79583.33333333333,
+					"beat": 143.25,
+					"lanePos": 0.125
+				},
+				{
+					"uuid": "872e08e7-58f3-4f47-aed3-65ab01d78e21",
+					"songPos": 79861.11111111111,
+					"beat": 143.75,
+					"lanePos": 0.125
+				}
+			]
+		}
+	]
+}

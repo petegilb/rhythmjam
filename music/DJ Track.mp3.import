@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://srkkr25j0yu"
+path="res://.godot/imported/DJ Track.mp3-44dd4ed75b3b29a7d5533201a77e1c42.mp3str"
+
+[deps]
+
+source_file="res://music/DJ Track.mp3"
+dest_files=["res://.godot/imported/DJ Track.mp3-44dd4ed75b3b29a7d5533201a77e1c42.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0.0
+bpm=108.0
+beat_count=0
+bar_beats=4

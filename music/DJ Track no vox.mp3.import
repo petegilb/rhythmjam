@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://b1tfyqfgfp1n1"
+path="res://.godot/imported/DJ Track no vox.mp3-d00ba1c7bb48b42ba25bf3851fd189a7.mp3str"
+
+[deps]
+
+source_file="res://music/DJ Track no vox.mp3"
+dest_files=["res://.godot/imported/DJ Track no vox.mp3-d00ba1c7bb48b42ba25bf3851fd189a7.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
