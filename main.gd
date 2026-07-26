@@ -135,6 +135,16 @@ func start_song():
 	bomb.position += Vector3(0, 5, 0)
 	bomb.visible = true
 	
+func note_position(beat_time: float, song_pos: float) -> Vector2:
+	var spawn_point = ui_rhythm.position
+	var cursor_point = ui_rhythm_dest.position
+	if song_pos <= beat_time:
+		var approach_progress = clampf((song_pos - (beat_time - UI_NOTE_SPEED)) / UI_NOTE_SPEED, 0.0, 1.0)
+		return spawn_point.lerp(cursor_point, approach_progress)
+	var overshoot_point = cursor_point - Vector2(spawn_point.x - cursor_point.x, 0.0)
+	var follow_through_progress = clampf((song_pos - beat_time) / UI_NOTE_SPEED, 0.0, 1.0)
+	return cursor_point.lerp(overshoot_point, follow_through_progress)
+
 func update_song(delta: float):
 	if fuse <= 0.0:
 		music_player.stop()
@@ -148,20 +158,17 @@ func update_song(delta: float):
 			and current_song_position >= active_input_beats_sec[spawn_idx] - UI_NOTE_SPEED:
 		var new_ui_note = ui_rhythm.duplicate()
 		ui.add_child(new_ui_note)
-		# TODO is this +1 correct?
-		var idx = spawn_idx
-		active_ui[idx] = new_ui_note
-		var tween = get_tree().create_tween()
-		var pos_diff = new_ui_note.position - ui_rhythm_dest.position
-		var travel = active_input_beats_sec[idx] - current_song_position
-		tween.tween_property(new_ui_note, "position", ui_rhythm_dest.position, travel)
-		tween.tween_property(new_ui_note, "position", 
-			ui_rhythm_dest.position - Vector2(pos_diff.x,0), travel)
-		tween.tween_callback(func():
-			new_ui_note.queue_free()
-			active_ui.erase(idx)
-		)
+		active_ui[spawn_idx] = new_ui_note
 		spawn_idx += 1
+
+	# drive note positions from the song position so they stay locked to the audio
+	for note_idx in active_ui.keys():
+		var beat_time = active_input_beats_sec[note_idx]
+		if current_song_position >= beat_time + UI_NOTE_SPEED:
+			active_ui[note_idx].queue_free()
+			active_ui.erase(note_idx)
+		else:
+			active_ui[note_idx].position = note_position(beat_time, current_song_position)
 	
 	if current_song_position >= next_beat_position and current_song_position >= next_beat_position:
 		last_beat += 1
