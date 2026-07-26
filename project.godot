@@ -19,6 +19,11 @@ config/icon="res://icon.svg"
 
 Global="*uid://fiktaelb5ej5"
 
+[display]
+
+window/size/resizable=false
+window/stretch/mode="canvas_items"
+
 [input]
 
 space={
