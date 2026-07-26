@@ -5,22 +5,10 @@
 [ext_resource type="Texture2D" uid="uid://dlicb82xm5ay6" path="res://assets/exclamation/exclamation_shape.png" id="3_wl5ax"]
 [ext_resource type="Texture2D" uid="uid://csvr8piltco45" path="res://assets/progressui/ui_bomb.png" id="4_tf0e0"]
 [ext_resource type="Texture2D" uid="uid://csenl768sjoae" path="res://assets/progressui/ui_fuse.png" id="5_obcwv"]
-[ext_resource type="Texture2D" uid="uid://dkdpxrathxbhb" path="res://assets/fuse/Flare01.png" id="6_ay4pc"]
 [ext_resource type="Texture2D" uid="uid://tpd8h43e8jxo" path="res://assets/win_screen.png" id="6_obcwv"]
+[ext_resource type="PackedScene" uid="uid://c0onclnmjka4m" path="res://scenes/fuse_cursor.tscn" id="6_pa1oa"]
 [ext_resource type="Theme" uid="uid://kjkyjl1nqctl" path="res://fonts/default_theme.tres" id="7_bo1jx"]
 [ext_resource type="Texture2D" uid="uid://db25r2vwe5wkl" path="res://assets/lose_screen.png" id="8_gycre"]
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_pa1oa"]
-particle_flag_align_y = true
-spread = 140.999
-initial_velocity_min = 25.0
-initial_velocity_max = 50.0
-radial_velocity_min = -2.2351742e-05
-radial_velocity_max = -2.2351742e-05
-gravity = Vector3(0, 0, 0)
-scale_min = 0.049999997
-scale_max = 0.099999994
-color = Color(0.9599507, 0.44175455, 0, 1)
 
 [node name="Ui" type="Control" unique_id=569277813]
 layout_mode = 3
@@ -83,12 +71,8 @@ offset_bottom = 202.62904
 texture = ExtResource("4_tf0e0")
 expand_mode = 1
 
-[node name="FuseCursor" type="GPUParticles2D" parent="GameUI" unique_id=177414307]
+[node name="FuseCursor" parent="GameUI" unique_id=250695563 instance=ExtResource("6_pa1oa")]
 position = Vector2(585, 32)
-amount = 12
-texture = ExtResource("6_ay4pc")
-lifetime = 0.16
-process_material = SubResource("ParticleProcessMaterial_pa1oa")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1323830025]
 

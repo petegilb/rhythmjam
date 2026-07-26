@@ -23,6 +23,8 @@ signal game_ended
 @onready var ui_lose_screen = $Ui/CanvasLayer/LoseScreen
 @onready var fuse_particle: GPUParticles3D = $Level1/turntable/record/bomb/FuseParticle
 @onready var fuse_particle2D: GPUParticles2D = $Ui/GameUI/FuseCursor
+@onready var preload_location: Node3D = $Level1/PreloadLocation
+@onready var loading_rect: Control = $CanvasLayer/LoadingRect
 
 const UI_NOTE_SPEED = 1.0
 const INPUT_MARGIN = 0.08
@@ -61,6 +63,9 @@ var explosion_sfx: AudioStream = preload("res://music/RhythmGame Explosion.mp3")
 var evil_laugh_sfx: AudioStream = preload("res://music/evil_laugh.wav")
 var woosh_sfx: AudioStream = preload("res://music/woosh.wav")
 var spin_sfx: AudioStream = preload("res://music/400685__supersnd__fidget-spinner1.wav")
+
+# preloader stuff
+@export var preloader_scenes: Array[PackedScene]
 
 # referenced this video: https://www.youtube.com/watch?v=9XcLoEVnjrA
 
@@ -259,6 +264,11 @@ func hit_pause() -> void:
 	fuse_pause = HIT_PAUSE
 
 func _ready() -> void:
+	# preload shaders and everything...
+	loading_rect.visible = true
+	await preload_shaders()
+	loading_rect.visible = false
+	
 	# get record
 	record = level.get_node("turntable/record")
 	bomb = level.get_node("turntable/record/bomb")
@@ -271,3 +281,28 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if music_player.is_playing() and not game_over:
 		update_song(delta)
+
+func preload_shaders() -> void:
+	for scene in preloader_scenes:
+		var new_scene := scene.instantiate()
+		if new_scene is Node3D:
+			preload_location.add_child(new_scene)
+			new_scene.global_position = preload_location.global_position
+		else:
+			# 2D / CanvasItem must live in a canvas to be drawn at all
+			add_child(new_scene)
+		_force_emit(new_scene)
+		# two frames: one to spawn particles, one to draw+compile
+		await get_tree().process_frame
+		await get_tree().process_frame
+		await get_tree().process_frame
+		new_scene.queue_free()
+
+func _force_emit(n: Node) -> void:
+	var all := n.find_children("*", "GPUParticles3D", true, false) \
+		+ n.find_children("*", "GPUParticles2D", true, false)
+	if n is GPUParticles3D or n is GPUParticles2D:
+		all.append(n)
+	for p in all:
+		p.emitting = true
+		p.restart()

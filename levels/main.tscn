@@ -1,12 +1,20 @@
 [gd_scene format=3 uid="uid://d3hjcx5p28i8t"]
 
 [ext_resource type="Script" uid="uid://barn6g7q5gsvo" path="res://main.gd" id="1_wdj6m"]
+[ext_resource type="PackedScene" uid="uid://145w4lranmv8" path="res://assets/bomb.glb" id="2_6et1j"]
 [ext_resource type="PackedScene" uid="uid://dsdpdkm1wvli4" path="res://ui/ui.tscn" id="2_wdj6m"]
+[ext_resource type="PackedScene" uid="uid://c6pujggm7quru" path="res://scenes/fuse_particle.tscn" id="3_etqu2"]
 [ext_resource type="PackedScene" uid="uid://bbnvgii0pgkur" path="res://levels/level1.tscn" id="3_l8qe7"]
+[ext_resource type="PackedScene" uid="uid://bl8b6x6mwrh0h" path="res://assets/turntable.glb" id="4_jw1n3"]
 [ext_resource type="AudioStream" uid="uid://bd2usumki4ijd" path="res://music/RhythmGame victory.mp3" id="4_m1504"]
+[ext_resource type="PackedScene" uid="uid://b3erx0sva6x6y" path="res://assets/record.glb" id="5_xdh4e"]
+[ext_resource type="PackedScene" uid="uid://c0onclnmjka4m" path="res://scenes/fuse_cursor.tscn" id="6_jw1n3"]
+[ext_resource type="PackedScene" uid="uid://pybfbku7se80" path="res://crowd/crowd.tscn" id="7_xdh4e"]
+[ext_resource type="Theme" uid="uid://kjkyjl1nqctl" path="res://fonts/default_theme.tres" id="11_xdh4e"]
 
 [node name="Main" type="Node2D" unique_id=1758961681]
 script = ExtResource("1_wdj6m")
+preloader_scenes = Array[PackedScene]([ExtResource("2_6et1j"), ExtResource("3_etqu2"), ExtResource("4_jw1n3"), ExtResource("5_xdh4e"), ExtResource("6_jw1n3"), ExtResource("7_xdh4e")])
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="." unique_id=1844480474]
 
@@ -20,3 +28,38 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.607858)
 
 [node name="EndMusicPlayer" type="AudioStreamPlayer" parent="." unique_id=652977411]
 stream = ExtResource("4_m1504")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1261141915]
+
+[node name="LoadingRect" type="ColorRect" parent="CanvasLayer" unique_id=319118739]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -576.0
+offset_top = -324.0
+offset_right = 576.0
+offset_bottom = 324.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.6856343, 0.30088243, 0.18015328, 1)
+
+[node name="Label" type="Label" parent="CanvasLayer/LoadingRect" unique_id=1427783777]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -260.5
+offset_top = -28.0
+offset_right = 260.5
+offset_bottom = 28.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("11_xdh4e")
+text = "Preloading Shaders..."

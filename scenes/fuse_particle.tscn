@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://c6pujggm7quru"]
+
+[ext_resource type="Texture2D" uid="uid://dkdpxrathxbhb" path="res://assets/fuse/Flare01.png" id="1_eov58"]
+[ext_resource type="Material" uid="uid://nkrer8w18isu" path="res://materials/fuse_particle_mat.tres" id="2_1iui1"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_045es"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_eov58")
+
+[sub_resource type="QuadMesh" id="QuadMesh_045es"]
+size = Vector2(0.05, 0.05)
+
+[node name="FuseParticle" type="GPUParticles3D" unique_id=1382433138]
+transform = Transform3D(1.0000006, -1.1920929e-07, 2.9802322e-08, -2.9802322e-08, 1.0000002, -2.0861626e-07, 8.940697e-08, 0, 1.0000006, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_045es")
+emitting = false
+amount = 20
+lifetime = 0.09999999999999999
+process_material = ExtResource("2_1iui1")
+draw_pass_1 = SubResource("QuadMesh_045es")

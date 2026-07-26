@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://c0onclnmjka4m"]
+
+[ext_resource type="Texture2D" uid="uid://dkdpxrathxbhb" path="res://assets/fuse/Flare01.png" id="1_lhqwn"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_pa1oa"]
+particle_flag_align_y = true
+spread = 140.999
+initial_velocity_min = 25.0
+initial_velocity_max = 50.0
+radial_velocity_min = -2.2351742e-05
+radial_velocity_max = -2.2351742e-05
+gravity = Vector3(0, 0, 0)
+scale_min = 0.049999997
+scale_max = 0.099999994
+color = Color(0.9599507, 0.44175455, 0, 1)
+
+[node name="FuseCursor" type="GPUParticles2D" unique_id=250695563]
+amount = 12
+texture = ExtResource("1_lhqwn")
+lifetime = 0.16
+process_material = SubResource("ParticleProcessMaterial_pa1oa")
