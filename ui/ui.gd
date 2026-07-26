@@ -4,6 +4,8 @@ extends Control
 @onready var beat_visual = $GameUI/BeatVisual
 @onready var win_screen = $CanvasLayer/WinScreen
 @onready var lose_screen = $CanvasLayer/LoseScreen
+@onready var bar: TextureProgressBar = $GameUI/Fuse
+@onready var cursor = $GameUI/FuseCursor
 
 var playback:AudioStreamPlaybackPolyphonic
 
@@ -26,10 +28,17 @@ func input_success():
 	beat_visual.color = Color(0.0, 0.953, 0.0, 1.0)
 	return
 
+func _update_cursor(_v) -> void:
+	var local := Vector2(bar.size.x * bar.ratio, bar.size.y * 0.5)
+	cursor.global_position = bar.get_global_transform() * local
+	cursor.global_position += Vector2(0, -30)
+
 func _ready() -> void:
 	beat_visual.visible = false
 	win_screen.visible = false
 	lose_screen.visible = false
+	bar.value_changed.connect(_update_cursor)
+	_update_cursor(0.0)
 	#main.song_beat.connect(song_beat_conn)
 	#main.enter_beat.connect(input_range_start)
 	#main.exit_beat.connect(input_range_stop)

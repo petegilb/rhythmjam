@@ -22,6 +22,7 @@ signal game_ended
 @onready var ui_win_screen = $Ui/CanvasLayer/WinScreen
 @onready var ui_lose_screen = $Ui/CanvasLayer/LoseScreen
 @onready var fuse_particle: GPUParticles3D = $Level1/turntable/record/bomb/FuseParticle
+@onready var fuse_particle2D: GPUParticles2D = $Ui/GameUI/FuseCursor
 
 const UI_NOTE_SPEED = 1.0
 const INPUT_MARGIN = 0.08
@@ -191,8 +192,10 @@ func update_song(delta: float):
 		fuse -= fuse_speed * delta
 		ui_fuse.value = fuse
 		fuse_particle.emitting = true
+		fuse_particle2D.emitting = true
 	else:
 		fuse_particle.emitting = false
+		fuse_particle2D.emitting = false
 		fuse_pause -= delta
 		fuse_pause = clamp(fuse_pause, 0.0, HIT_PAUSE)
 		if fuse_pause == 0.0:
@@ -260,6 +263,8 @@ func _ready() -> void:
 	record = level.get_node("turntable/record")
 	bomb = level.get_node("turntable/record/bomb")
 	bomb.visible = false
+	fuse_particle.emitting = false
+	fuse_particle2D.emitting = false
 	set_song(song1, song1_json_path)
 	start_song()
 
