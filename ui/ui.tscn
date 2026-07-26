@@ -106,6 +106,26 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("6_obcwv")
 
+[node name="StatsLabel" type="Label" parent="CanvasLayer/WinScreen" unique_id=771000001]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 102.0
+offset_top = 26.0
+offset_right = 542.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("7_bo1jx")
+text = "Hits: 0 / 0
+Misses: 0
+Accuracy: 0%"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="PlayAgainButton" type="Button" parent="CanvasLayer/WinScreen" unique_id=1349690184]
 layout_mode = 1
 anchors_preset = 8
@@ -168,6 +188,27 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("8_gycre")
 stretch_mode = 5
+
+[node name="StatsLabel" type="Label" parent="CanvasLayer/LoseScreen" unique_id=771000002]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -220.0
+offset_top = -213.0
+offset_right = 220.0
+offset_bottom = -81.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("7_bo1jx")
+theme_override_font_sizes/font_size = 35
+text = "Hits: 0 / 0
+Misses: 0
+Accuracy: 0%"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="PlayAgainButton" type="Button" parent="CanvasLayer/LoseScreen" unique_id=825139166]
 layout_mode = 1

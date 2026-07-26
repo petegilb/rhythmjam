@@ -21,6 +21,8 @@ signal game_ended
 @onready var ui_fuse: TextureProgressBar = $Ui/GameUI/Fuse
 @onready var ui_win_screen = $Ui/CanvasLayer/WinScreen
 @onready var ui_lose_screen = $Ui/CanvasLayer/LoseScreen
+@onready var ui_win_stats: Label = $Ui/CanvasLayer/WinScreen/StatsLabel
+@onready var ui_lose_stats: Label = $Ui/CanvasLayer/LoseScreen/StatsLabel
 @onready var fuse_particle: GPUParticles3D = $Level1/turntable/record/bomb/FuseParticle
 @onready var fuse_particle2D: GPUParticles2D = $Ui/GameUI/FuseCursor
 @onready var preload_location: Node3D = $Level1/PreloadLocation
@@ -237,16 +239,15 @@ func update_song(delta: float):
 		fuse = 0.0
 	
 	if Input.is_action_just_pressed("space"):
-		if active_beat_position != -1:
+		var hit_idx = active_input_beats_sec.find(active_beat_position)
+		if active_beat_position != -1 and active_ui.has(hit_idx) and active_ui[hit_idx].visible:
 			print("ok!")
 			input_success.emit()
 			play_sfx(ok_sfx, 0.5)
 			num_success += 1
-			var hit_idx = active_input_beats_sec.find(active_beat_position)
-			if active_ui.has(hit_idx):
-				active_ui[hit_idx].visible = false
-				hit_pause()
-		else:
+			active_ui[hit_idx].visible = false
+			hit_pause()
+		elif active_beat_position == -1:
 			play_sfx(miss_sfx, 0.7)
 			print("miss")
 			if Global.hard_mode:
@@ -264,8 +265,12 @@ func song_ended() -> void:
 		note.queue_free()
 	active_ui.clear()
 	var total_beats: int = active_input_beats.size()
-	var success_percentage = float(num_success) / float(total_beats)
-	print("final percentage %f" % success_percentage)
+	var hits: int = clampi(num_success, 0, total_beats)
+	var misses: int = total_beats - hits
+	var accuracy: int = roundi(float(hits) / float(total_beats) * 100.0) if total_beats > 0 else 0
+	var stats_text := "Hits: %d / %d\nMisses: %d\nAccuracy: %d%%" % [hits, total_beats, misses, accuracy]
+	ui_win_stats.text = stats_text
+	ui_lose_stats.text = stats_text
 	if fuse > 0.0:
 		print("you win!")
 		play_sfx(spin_sfx)
