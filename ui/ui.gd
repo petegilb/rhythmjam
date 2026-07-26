@@ -44,6 +44,10 @@ func _ready() -> void:
 	#main.exit_beat.connect(input_range_stop)
 	#main.input_success.connect(input_success)
 
+func _process(_delta: float) -> void:
+	if main:
+		$GameUI/CanvasLayer/HardLabel.visible = Global.hard_mode
+
 # referenced: https://forum.godotengine.org/t/best-proper-way-to-do-ui-sounds-hover-click/39081/3
 func _enter_tree() -> void:
 	# Create an audio player
@@ -74,7 +78,12 @@ func _play_pressed() -> void:
 	playback.play_stream(preload("res://ui/RhythmGame Select.mp3"), 0, 0, randf_range(0.9, 1.1))
 
 func _on_play_again_button_pressed() -> void:
+	Global.hard_mode = false
 	get_tree().change_scene_to_file("res://levels/main.tscn")
 
 func _on_quit_button_pressed() -> void:
 	get_tree().quit()
+
+func _on_play_again_hard_pressed() -> void:
+	Global.hard_mode = true
+	get_tree().change_scene_to_file("res://levels/main.tscn")

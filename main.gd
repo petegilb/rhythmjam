@@ -45,13 +45,17 @@ var spawn_idx = 0
 # game state
 var game_over = false
 var num_success := 0
-const WIN_PERCENTAGE = 0.7
 var active_ui = {}
 var fuse = 100.0
 var fuse_speed = 1.0
 var fuse_pause = 0.0
 const MISS_PENALTY = 5.0
 const HIT_PAUSE = 0.5
+
+# hard mode
+const HARD_MISS_PENALTY = 14.0
+const HARD_UI_NOTE_SPEED = 0.5
+const HARD_INPUT_MARGIN = 0.04
 
 # sfx
 var disappointment: AudioStreamMP3 = preload("res://music/RhythmGame Disappointment.mp3")
@@ -139,10 +143,10 @@ func note_position(beat_time: float, song_pos: float) -> Vector2:
 	var spawn_point = ui_rhythm.position
 	var cursor_point = ui_rhythm_dest.position
 	if song_pos <= beat_time:
-		var approach_progress = clampf((song_pos - (beat_time - UI_NOTE_SPEED)) / UI_NOTE_SPEED, 0.0, 1.0)
+		var approach_progress = clampf((song_pos - (beat_time - get_ui_note_speed())) / get_ui_note_speed(), 0.0, 1.0)
 		return spawn_point.lerp(cursor_point, approach_progress)
 	var overshoot_point = cursor_point - Vector2(spawn_point.x - cursor_point.x, 0.0)
-	var follow_through_progress = clampf((song_pos - beat_time) / UI_NOTE_SPEED, 0.0, 1.0)
+	var follow_through_progress = clampf((song_pos - beat_time) / get_ui_note_speed(), 0.0, 1.0)
 	return cursor_point.lerp(overshoot_point, follow_through_progress)
 
 func update_song(delta: float):
@@ -155,7 +159,7 @@ func update_song(delta: float):
 	# Compensate for output latency. (https://docs.godotengine.org/en/stable/tutorials/audio/sync_with_audio.html)
 	current_song_position -= AudioServer.get_output_latency()
 	while spawn_idx < active_input_beats_sec.size() \
-			and current_song_position >= active_input_beats_sec[spawn_idx] - UI_NOTE_SPEED:
+			and current_song_position >= active_input_beats_sec[spawn_idx] - get_ui_note_speed():
 		var new_ui_note = ui_rhythm.duplicate()
 		ui.add_child(new_ui_note)
 		active_ui[spawn_idx] = new_ui_note
@@ -164,7 +168,7 @@ func update_song(delta: float):
 	# drive note positions from the song position so they stay locked to the audio
 	for note_idx in active_ui.keys():
 		var beat_time = active_input_beats_sec[note_idx]
-		if current_song_position >= beat_time + UI_NOTE_SPEED:
+		if current_song_position >= beat_time + get_ui_note_speed():
 			active_ui[note_idx].queue_free()
 			active_ui.erase(note_idx)
 		else:
@@ -180,16 +184,19 @@ func update_song(delta: float):
 		else:
 			print("no more inputs!")
 		
-	if current_song_position >= next_beat_position - INPUT_MARGIN:
+	if current_song_position >= next_beat_position - get_input_margin():
 		if active_beat_position != next_beat_position:
 			active_beat_position = next_beat_position
 			enter_beat.emit()
-	elif active_beat_position > -1 and current_song_position >= active_beat_position + INPUT_MARGIN:
+	elif active_beat_position > -1 and current_song_position >= active_beat_position + get_input_margin():
 		var hit_idx = active_input_beats_sec.find(active_beat_position)
 		if active_ui[hit_idx].visible:
 			play_sfx(disappointment)
 			input_miss.emit()
-			fuse -= MISS_PENALTY
+			if Global.hard_mode:
+				fuse -= HARD_MISS_PENALTY
+			else:
+				fuse -= MISS_PENALTY
 		active_beat_position = -1
 		exit_beat.emit()
 		
@@ -233,7 +240,10 @@ func update_song(delta: float):
 		else:
 			play_sfx(miss_sfx, 0.7)
 			print("miss")
-			fuse -= MISS_PENALTY
+			if Global.hard_mode:
+				fuse -= HARD_MISS_PENALTY
+			else:
+				fuse -= MISS_PENALTY
 
 func song_ended() -> void:
 	game_over = true
@@ -313,3 +323,9 @@ func _force_emit(n: Node) -> void:
 	for p in all:
 		p.emitting = true
 		p.restart()
+		
+func get_ui_note_speed() -> float:
+	return HARD_UI_NOTE_SPEED if Global.hard_mode else UI_NOTE_SPEED
+	
+func get_input_margin() -> float:
+	return HARD_INPUT_MARGIN if Global.hard_mode else INPUT_MARGIN

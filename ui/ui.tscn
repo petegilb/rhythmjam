@@ -74,6 +74,21 @@ expand_mode = 1
 [node name="FuseCursor" parent="GameUI" unique_id=250695563 instance=ExtResource("6_pa1oa")]
 position = Vector2(585, 32)
 
+[node name="CanvasLayer" type="CanvasLayer" parent="GameUI" unique_id=2008800198]
+
+[node name="HardLabel" type="Label" parent="GameUI/CanvasLayer" unique_id=608963454]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 9.0
+offset_top = -64.0
+offset_right = 294.0
+offset_bottom = -8.0
+grow_vertical = 0
+theme = ExtResource("7_bo1jx")
+theme_override_colors/font_color = Color(0.91090953, 0.2833061, 0.20426297, 1)
+text = "HARD MODE"
+
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1323830025]
 
 [node name="WinScreen" type="TextureRect" parent="CanvasLayer" unique_id=365352388]
@@ -107,6 +122,22 @@ grow_vertical = 2
 theme = ExtResource("7_bo1jx")
 text = "Play Again?"
 
+[node name="PlayAgainHard" type="Button" parent="CanvasLayer/WinScreen" unique_id=1362399670]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -144.5
+offset_top = 38.0
+offset_right = 144.5
+offset_bottom = 102.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("7_bo1jx")
+text = "Hard Mode"
+
 [node name="QuitButton" type="Button" parent="CanvasLayer/WinScreen" unique_id=544019853]
 layout_mode = 1
 anchors_preset = 8
@@ -115,16 +146,15 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -102.9234
-offset_top = 46.125
+offset_top = 109.0
 offset_right = 102.9234
-offset_bottom = 109.875
+offset_bottom = 173.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("7_bo1jx")
 text = "Quit"
 
 [node name="LoseScreen" type="TextureRect" parent="CanvasLayer" unique_id=1138912420]
-visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -155,6 +185,22 @@ grow_vertical = 2
 theme = ExtResource("7_bo1jx")
 text = "Play Again?"
 
+[node name="PlayAgainHard" type="Button" parent="CanvasLayer/LoseScreen" unique_id=1500963901]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -144.5
+offset_top = 71.0
+offset_right = 144.5
+offset_bottom = 135.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("7_bo1jx")
+text = "Hard Mode"
+
 [node name="QuitButton" type="Button" parent="CanvasLayer/LoseScreen" unique_id=446783487]
 layout_mode = 1
 anchors_preset = 8
@@ -163,15 +209,17 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -102.9234
-offset_top = 74.0
+offset_top = 138.0
 offset_right = 102.9234
-offset_bottom = 138.0
+offset_bottom = 202.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("7_bo1jx")
 text = "Quit"
 
 [connection signal="pressed" from="CanvasLayer/WinScreen/PlayAgainButton" to="." method="_on_play_again_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/WinScreen/PlayAgainHard" to="." method="_on_play_again_hard_pressed"]
 [connection signal="pressed" from="CanvasLayer/WinScreen/QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/LoseScreen/PlayAgainButton" to="." method="_on_play_again_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/LoseScreen/PlayAgainHard" to="." method="_on_play_again_hard_pressed"]
 [connection signal="pressed" from="CanvasLayer/LoseScreen/QuitButton" to="." method="_on_quit_button_pressed"]
