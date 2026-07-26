@@ -271,6 +271,3 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if music_player.is_playing() and not game_over:
 		update_song(delta)
-	
-	#if we_won:
-		#record.rotation.y = -rotations * TAU

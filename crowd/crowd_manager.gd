@@ -79,7 +79,7 @@ const SUCCESS_HAND_CHANCE = 0.5
 class Bobber extends RefCounted:
 	var skeleton: Skeleton3D
 	var body: Node3D
-	var mesh: MeshInstance3D
+	var material: ShaderMaterial
 	# cached rest poses we offset from
 	var look_basis: Basis
 	var head_origin: Vector3
@@ -112,8 +112,11 @@ func _ready() -> void:
 	# set the materials for each person
 	for person: Node3D in crowd_members:
 		var mesh: MeshInstance3D = person.get_node("mesh/Rig/Skeleton3D/Char1")
-		mesh.set_instance_shader_parameter("skin_color", SKIN_COLORS.pick_random())
-		
+
+		var skin_material: ShaderMaterial = SKIN_MATERIAL.duplicate()
+		skin_material.set_shader_parameter("skin_color", SKIN_COLORS.pick_random())
+		mesh.set_surface_override_material(SKIN_MAT_IDX, skin_material)
+
 		# this is a standard material so we need to duplicate it unless we make it a shader mat
 		var shirt_material: StandardMaterial3D = mesh.get_active_material(SHIRT_MAT_IDX).duplicate()
 		shirt_material.albedo_color = SHIRT_COLORS.pick_random()
@@ -142,7 +145,7 @@ func _ready() -> void:
 		var bobber := Bobber.new()
 		bobber.skeleton = skeleton
 		bobber.body = person
-		bobber.mesh = mesh
+		bobber.material = skin_material
 		bobber.look_basis = basis
 		bobber.head_origin = pose.origin
 		bobber.lhand_rest = skeleton.get_bone_global_pose(LHAND_BONE_IDX)
@@ -218,4 +221,4 @@ func input_miss() -> void:
 
 func set_face(idx: float) -> void:
 	for bobber in bobbers:
-		bobber.mesh.set_instance_shader_parameter("face_index", idx)
+		bobber.material.set_shader_parameter("face_index", idx)
