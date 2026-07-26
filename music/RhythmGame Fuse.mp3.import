@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dd0pvomso2b5i"
+path="res://.godot/imported/RhythmGame Fuse.mp3-5bed7c97b9961ff5f55a56cf6c58e3d1.mp3str"
+
+[deps]
+
+source_file="res://music/RhythmGame Fuse.mp3"
+dest_files=["res://.godot/imported/RhythmGame Fuse.mp3-5bed7c97b9961ff5f55a56cf6c58e3d1.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

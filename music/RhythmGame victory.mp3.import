@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bd2usumki4ijd"
+path="res://.godot/imported/RhythmGame victory.mp3-e9d27419bf22c68fb22e6caf8026855e.mp3str"
+
+[deps]
+
+source_file="res://music/RhythmGame victory.mp3"
+dest_files=["res://.godot/imported/RhythmGame victory.mp3-e9d27419bf22c68fb22e6caf8026855e.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://jtuip5htm07q" path="res://assets/crowd.glb" id="3_b3oru"]
 [ext_resource type="PackedScene" uid="uid://b3erx0sva6x6y" path="res://assets/record.glb" id="4_61w3m"]
 [ext_resource type="PackedScene" uid="uid://bl8b6x6mwrh0h" path="res://assets/turntable.glb" id="4_ua5ty"]
-[ext_resource type="AudioStream" uid="uid://dpas3oqxqc3lu" path="res://music/329045__scousemousejb__wick-of-detonation-bomb.wav" id="6_8hd6v"]
+[ext_resource type="AudioStream" uid="uid://dd0pvomso2b5i" path="res://music/RhythmGame Fuse.mp3" id="6_8hd6v"]
 [ext_resource type="PackedScene" uid="uid://145w4lranmv8" path="res://assets/bomb.glb" id="6_pdpul"]
 
 [sub_resource type="Environment" id="Environment_txtq1"]
@@ -28,6 +28,24 @@ albedo_color = Color(0.16978297, 0.111334376, 0.07229293, 1)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pdtm5"]
 albedo_color = Color(0.092472665, 0.050973848, 0.01029626, 1)
 
+[sub_resource type="Animation" id="Animation_omn1t"]
+resource_name = "EXPLODE"
+length = 1.5
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("turntable/record/bomb")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, -0.11670732, 0.16773987, -0.042134285, 0.26666668, 1, 0, 0.28515375, 0, 1.2, 1, 0, 0.28515375, 0, 1.5, 1, -0.012047868, 0.3732201, 0.36674404)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("turntable/record/bomb")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, -0.461678, -0.219715, -0.369307, 0.77601, 0.26666668, 1, 0, 0, 0, 1, 0.43333334, 1, -0.311506, 0, 0, 0.950244, 0.53333336, 1, 0, 0, 0, 1, 0.6044236, 1, -0.311506, 0, 0, 0.950244, 0.7044236, 1, 0, 0, 0, 1, 0.8042638, 1, -0.311506, 0, 0, 0.950244, 0.9042638, 1, 0, 0, 0, 1, 1.0068796, 1, -0.311506, 0, 0, 0.950244, 1.1068796, 1, 0, 0, 0, 1, 1.210883, 1, -0.311506, 0, 0, 0.950244, 1.310883, 1, 0, 0, 0, 1, 1.4079477, 1, -0.311506, 0, 0, 0.950244, 1.5, 1, -0.21644, 0, 0, 0.976296)
+
 [sub_resource type="Animation" id="Animation_8hd6v"]
 length = 0.001
 tracks/0/type = "position_3d"
@@ -37,6 +55,13 @@ tracks/0/path = NodePath("turntable/record/bomb")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = PackedFloat32Array(0, 1, -0.11670732, 0.16773987, -0.042134285)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("turntable/record/bomb")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, -0.461678, -0.219715, -0.369307, 0.77601)
 
 [sub_resource type="Animation" id="Animation_045es"]
 resource_name = "bombfly"
@@ -47,6 +72,13 @@ tracks/0/path = NodePath("turntable/record/bomb")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = PackedFloat32Array(0, 1, 0, 3.153, -0.042, 1, 1, -0.11670732, 0.16773987, -0.042134285)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("turntable/record/bomb")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, -0.461678, -0.219715, -0.369307, 0.77601)
 
 [sub_resource type="Animation" id="Animation_pdpul"]
 resource_name = "test"
@@ -59,11 +91,31 @@ tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = PackedFloat32Array(0, 1, -1.299, 3.153, -0.042, 0.06666666, 1, -0.5593915, 0.07028484, -0.042134285, 0.13333334, 1, -0.32799634, 0.2728994, -0.042134285, 0.2, 1, -0.11670732, 0.16773987, -0.042134285)
 
+[sub_resource type="Animation" id="Animation_lf3p4"]
+resource_name = "win"
+length = 0.5
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("turntable/record/bomb")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, -0.11670732, 0.16773987, -0.042134285, 0.25, 1, 2.028912, 1.80208, -3.154221, 0.5, 1, 3.6356535, 0.16773987, -5.4846992)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("turntable/record/bomb")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, -0.461678, -0.219715, -0.369307, 0.77601)
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8hd6v"]
 _data = {
+&"EXPLODE": SubResource("Animation_omn1t"),
 &"RESET": SubResource("Animation_8hd6v"),
 &"bombfly": SubResource("Animation_045es"),
-&"test": SubResource("Animation_pdpul")
+&"test": SubResource("Animation_pdpul"),
+&"win": SubResource("Animation_lf3p4")
 }
 
 [node name="Level1" type="Node3D" unique_id=359005921]
@@ -170,7 +222,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.008407444, 1.6639582, 6.753
 [node name="record" parent="turntable" unique_id=1404329764 instance=ExtResource("4_61w3m")]
 
 [node name="bomb" parent="turntable/record" unique_id=727833021 instance=ExtResource("6_pdpul")]
-transform = Transform3D(0.30927673, 0.3800632, 0, -0.18114643, 0.14740805, 0.43076324, 0.33411682, -0.2718878, 0.23354481, -0.11670732, 0.16773987, -0.042134285)
+transform = Transform3D(0.30903107, 0.38026288, -1.1682515e-07, -0.18144535, 0.14745659, 0.43062082, 0.33418187, -0.27158183, 0.23380737, -0.11670732, 0.16773987, -0.042134285)
+rotation_edit_mode = 1
 
 [node name="BombSounds" type="AudioStreamPlayer2D" parent="turntable/record/bomb" unique_id=1918967847]
 unique_name_in_owner = true
