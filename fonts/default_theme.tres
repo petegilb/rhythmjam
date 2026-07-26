@@ -1,0 +1,7 @@
+[gd_resource type="Theme" format=3 uid="uid://kjkyjl1nqctl"]
+
+[ext_resource type="FontFile" uid="uid://cnjmwja4cfbs7" path="res://fonts/RubikSprayPaint-Regular.ttf" id="1_w38wm"]
+
+[resource]
+default_font = ExtResource("1_w38wm")
+default_font_size = 46

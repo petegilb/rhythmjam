@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://1fm3c6hck67x"
+path="res://.godot/imported/RhythmGame Navigate.mp3-dc7c3a34937d50428728d8e0a6ab91e4.mp3str"
+
+[deps]
+
+source_file="res://ui/RhythmGame Navigate.mp3"
+dest_files=["res://.godot/imported/RhythmGame Navigate.mp3-dc7c3a34937d50428728d8e0a6ab91e4.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

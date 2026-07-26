@@ -5,6 +5,9 @@
 [ext_resource type="Texture2D" uid="uid://dlicb82xm5ay6" path="res://assets/exclamation/exclamation_shape.png" id="3_wl5ax"]
 [ext_resource type="Texture2D" uid="uid://csvr8piltco45" path="res://assets/progressui/ui_bomb.png" id="4_tf0e0"]
 [ext_resource type="Texture2D" uid="uid://csenl768sjoae" path="res://assets/progressui/ui_fuse.png" id="5_obcwv"]
+[ext_resource type="Texture2D" uid="uid://tpd8h43e8jxo" path="res://assets/win_screen.png" id="6_obcwv"]
+[ext_resource type="Theme" uid="uid://kjkyjl1nqctl" path="res://fonts/default_theme.tres" id="7_bo1jx"]
+[ext_resource type="Texture2D" uid="uid://db25r2vwe5wkl" path="res://assets/lose_screen.png" id="8_gycre"]
 
 [node name="Ui" type="Control" unique_id=569277813]
 layout_mode = 3
@@ -20,7 +23,7 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="BeatVisual" type="ColorRect" parent="." unique_id=911946034]
+[node name="BeatVisual" type="ColorRect" parent="GameUI" unique_id=911946034]
 layout_mode = 0
 offset_left = 546.0
 offset_top = 290.0
@@ -28,7 +31,7 @@ offset_right = 586.0
 offset_bottom = 330.0
 color = Color(0.843, 0.239, 0.173, 1)
 
-[node name="Exclamation" type="TextureRect" parent="." unique_id=315653614]
+[node name="Exclamation" type="TextureRect" parent="GameUI" unique_id=315653614]
 layout_mode = 0
 offset_left = 1268.0
 offset_top = 231.0
@@ -37,7 +40,7 @@ offset_bottom = 366.0
 texture = ExtResource("2_ks8t7")
 expand_mode = 1
 
-[node name="ExclamationShape" type="TextureRect" parent="." unique_id=1363334376]
+[node name="ExclamationShape" type="TextureRect" parent="GameUI" unique_id=1363334376]
 modulate = Color(1, 1, 1, 0.83137256)
 layout_mode = 0
 offset_left = 170.0
@@ -47,7 +50,7 @@ offset_bottom = 366.0
 texture = ExtResource("3_wl5ax")
 expand_mode = 1
 
-[node name="Fuse" type="TextureProgressBar" parent="." unique_id=1580891789]
+[node name="Fuse" type="TextureProgressBar" parent="GameUI" unique_id=1580891789]
 layout_mode = 0
 offset_left = 46.000004
 offset_top = 5.0
@@ -58,7 +61,7 @@ step = 0.0
 value = 100.0
 texture_progress = ExtResource("5_obcwv")
 
-[node name="Bomb" type="TextureRect" parent="." unique_id=791054001]
+[node name="Bomb" type="TextureRect" parent="GameUI" unique_id=791054001]
 layout_mode = 0
 offset_left = 13.0
 offset_top = 109.0
@@ -66,3 +69,104 @@ offset_right = 99.0
 offset_bottom = 202.62904
 texture = ExtResource("4_tf0e0")
 expand_mode = 1
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1323830025]
+
+[node name="WinScreen" type="TextureRect" parent="CanvasLayer" unique_id=365352388]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -576.0
+offset_top = -324.0
+offset_right = 576.0
+offset_bottom = 324.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_obcwv")
+
+[node name="PlayAgainButton" type="Button" parent="CanvasLayer/WinScreen" unique_id=1349690184]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -102.9234
+offset_top = -31.875
+offset_right = 102.9234
+offset_bottom = 31.875
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("7_bo1jx")
+text = "Play Again?"
+
+[node name="QuitButton" type="Button" parent="CanvasLayer/WinScreen" unique_id=544019853]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -102.9234
+offset_top = 46.125
+offset_right = 102.9234
+offset_bottom = 109.875
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("7_bo1jx")
+text = "Quit"
+
+[node name="LoseScreen" type="TextureRect" parent="CanvasLayer" unique_id=1138912420]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -504.0
+offset_top = -318.5
+offset_right = 504.0
+offset_bottom = 318.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("8_gycre")
+stretch_mode = 5
+
+[node name="PlayAgainButton" type="Button" parent="CanvasLayer/LoseScreen" unique_id=825139166]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -144.5
+offset_top = 1.0
+offset_right = 144.5
+offset_bottom = 65.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("7_bo1jx")
+text = "Play Again?"
+
+[node name="QuitButton" type="Button" parent="CanvasLayer/LoseScreen" unique_id=446783487]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -102.9234
+offset_top = 74.0
+offset_right = 102.9234
+offset_bottom = 138.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("7_bo1jx")
+text = "Quit"
+
+[connection signal="pressed" from="CanvasLayer/WinScreen/PlayAgainButton" to="." method="_on_play_again_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/WinScreen/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/LoseScreen/PlayAgainButton" to="." method="_on_play_again_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/LoseScreen/QuitButton" to="." method="_on_quit_button_pressed"]

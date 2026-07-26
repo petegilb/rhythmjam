@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cgl88yk4vnocb"
+path="res://.godot/imported/RhythmGame Return.mp3-0d22a77976b36e83425bc17f26c29482.mp3str"
+
+[deps]
+
+source_file="res://ui/RhythmGame Return.mp3"
+dest_files=["res://.godot/imported/RhythmGame Return.mp3-0d22a77976b36e83425bc17f26c29482.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

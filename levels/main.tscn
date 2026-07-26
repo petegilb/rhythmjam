@@ -11,6 +11,7 @@ script = ExtResource("1_wdj6m")
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="." unique_id=1844480474]
 
 [node name="SFXPlayer1" type="AudioStreamPlayer" parent="." unique_id=1548304228]
+max_polyphony = 2
 
 [node name="Ui" parent="." unique_id=569277813 instance=ExtResource("2_wdj6m")]
 

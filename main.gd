@@ -13,9 +13,12 @@ signal input_success
 @onready var anim_player: AnimationPlayer = $Level1/AnimationPlayer
 @onready var bomb_sfx: AudioStreamPlayer2D = $Level1/%BombSounds
 @onready var ui = $Ui
-@onready var ui_rhythm = $Ui/Exclamation
-@onready var ui_rhythm_dest = $Ui/ExclamationShape
-@onready var ui_fuse: TextureProgressBar = $Ui/Fuse
+@onready var ui_game = $Ui/GameUI
+@onready var ui_rhythm = $Ui/GameUI/Exclamation
+@onready var ui_rhythm_dest = $Ui/GameUI/ExclamationShape
+@onready var ui_fuse: TextureProgressBar = $Ui/GameUI/Fuse
+@onready var ui_win_screen = $Ui/CanvasLayer/WinScreen
+@onready var ui_lose_screen = $Ui/CanvasLayer/LoseScreen
 
 const UI_NOTE_SPEED = 1.0
 const INPUT_MARGIN = 0.08
@@ -64,7 +67,7 @@ var bomb: Node3D
 var beats_per_rotation: float = 4.0
 
 func play_sfx(input_sfx: AudioStream, volume: float = 1.0):
-	sfx_player.stop()
+	#sfx_player.stop()
 	sfx_player.stream = input_sfx
 	sfx_player.volume_linear = volume 
 	sfx_player.play()
@@ -195,6 +198,9 @@ func update_song(delta: float):
 		music_player.stop()
 		song_ended()
 	
+	if Input.is_action_just_pressed("ui_right"):
+		fuse = 0.0
+	
 	if Input.is_action_just_pressed("space"):
 		if active_beat_position != -1:
 			print("ok!")
@@ -225,6 +231,8 @@ func song_ended() -> void:
 		anim_player.play("win")
 		play_sfx(woosh_sfx)
 		await anim_player.animation_finished
+		ui_win_screen.visible = true
+		ui_game.visible = false
 		end_music_player.play()
 		print("show ui here.")
 	else:
@@ -233,6 +241,8 @@ func song_ended() -> void:
 		play_sfx(evil_laugh_sfx)
 		print("you lose! the bomb exploded!")
 		await anim_player.animation_finished
+		ui_lose_screen.visible = true
+		ui_game.visible = false
 		play_sfx(explosion_sfx)
 
 # if the player hits a note, pause the fuse momentarily.

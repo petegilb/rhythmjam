@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dylt43fpaqadh"
+path="res://.godot/imported/RhythmGame Select.mp3-6c8750e374b4703e12c777b42003a63d.mp3str"
+
+[deps]
+
+source_file="res://ui/RhythmGame Select.mp3"
+dest_files=["res://.godot/imported/RhythmGame Select.mp3-6c8750e374b4703e12c777b42003a63d.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
