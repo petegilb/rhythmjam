@@ -2,11 +2,12 @@
 
 [ext_resource type="Material" uid="uid://clvqlbgmnriyb" path="res://materials/walls.tres" id="1_pdtm5"]
 [ext_resource type="Material" uid="uid://drfvdnmqb4nt7" path="res://materials/pillar.tres" id="1_sjb42"]
-[ext_resource type="PackedScene" uid="uid://jtuip5htm07q" path="res://assets/crowd.glb" id="3_b3oru"]
 [ext_resource type="PackedScene" uid="uid://b3erx0sva6x6y" path="res://assets/record.glb" id="4_61w3m"]
 [ext_resource type="PackedScene" uid="uid://bl8b6x6mwrh0h" path="res://assets/turntable.glb" id="4_ua5ty"]
 [ext_resource type="AudioStream" uid="uid://dd0pvomso2b5i" path="res://music/RhythmGame Fuse.mp3" id="6_8hd6v"]
 [ext_resource type="PackedScene" uid="uid://145w4lranmv8" path="res://assets/bomb.glb" id="6_pdpul"]
+[ext_resource type="PackedScene" uid="uid://pybfbku7se80" path="res://crowd/crowd.tscn" id="8_045es"]
+[ext_resource type="Script" uid="uid://bc6ttn0hc1rg7" path="res://crowd/crowd_manager.gd" id="8_omn1t"]
 
 [sub_resource type="Environment" id="Environment_txtq1"]
 background_mode = 1
@@ -231,101 +232,106 @@ stream = ExtResource("6_8hd6v")
 
 [node name="crowd" type="Node3D" parent="." unique_id=1661353956]
 
-[node name="crowdchar" parent="crowd" unique_id=1672972515 instance=ExtResource("3_b3oru")]
+[node name="crowdchar" parent="crowd" unique_id=1672972515 instance=ExtResource("8_045es")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.99830854, 0.5, 5.103509)
 
-[node name="crowdchar2" parent="crowd" unique_id=1144675324 instance=ExtResource("3_b3oru")]
+[node name="crowdchar2" parent="crowd" unique_id=1144675324 instance=ExtResource("8_045es")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.09677601, 0.5, 4.857982)
 
-[node name="crowdchar3" parent="crowd" unique_id=1378307318 instance=ExtResource("3_b3oru")]
+[node name="crowdchar3" parent="crowd" unique_id=1378307318 instance=ExtResource("8_045es")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1510167, 0.5, 4.3970246)
 
-[node name="crowdchar4" parent="crowd" unique_id=1867011193 instance=ExtResource("3_b3oru")]
+[node name="crowdchar4" parent="crowd" unique_id=1867011193 instance=ExtResource("8_045es")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0.5, 4)
 
-[node name="crowdchar11" parent="crowd" unique_id=210982145 instance=ExtResource("3_b3oru")]
+[node name="crowdchar11" parent="crowd" unique_id=210982145 instance=ExtResource("8_045es")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7346184, 0.5000001, 4.7221704)
 
-[node name="crowdchar5" parent="crowd" unique_id=1772598193 instance=ExtResource("3_b3oru")]
+[node name="crowdchar5" parent="crowd" unique_id=1772598193 instance=ExtResource("8_045es")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.74931, 0.49999952, 4.0000186)
 
-[node name="crowdchar31" parent="crowd" unique_id=1042664049 instance=ExtResource("3_b3oru")]
+[node name="crowdchar31" parent="crowd" unique_id=1042664049 instance=ExtResource("8_045es")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.925045, 0.49999952, 4.721785)
 
-[node name="crowdchar6" parent="crowd" unique_id=1750735042 instance=ExtResource("3_b3oru")]
+[node name="crowdchar6" parent="crowd" unique_id=1750735042 instance=ExtResource("8_045es")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4608488, 0.5, 5.7192006)
 
-[node name="crowdchar7" parent="crowd" unique_id=404702046 instance=ExtResource("3_b3oru")]
+[node name="crowdchar7" parent="crowd" unique_id=404702046 instance=ExtResource("8_045es")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4608488, 0.5, 5.73014)
 
-[node name="crowdchar8" parent="crowd" unique_id=179715155 instance=ExtResource("3_b3oru")]
+[node name="crowdchar8" parent="crowd" unique_id=179715155 instance=ExtResource("8_045es")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.18905455, 0.5, 5.431239)
 
-[node name="crowdchar9" parent="crowd" unique_id=501902110 instance=ExtResource("3_b3oru")]
+[node name="crowdchar9" parent="crowd" unique_id=501902110 instance=ExtResource("8_045es")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4608488, 0.5, 5.132641)
 
-[node name="crowdchar10" parent="crowd" unique_id=1708861891 instance=ExtResource("3_b3oru")]
+[node name="crowdchar10" parent="crowd" unique_id=1708861891 instance=ExtResource("8_045es")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0253116, 0.49999952, 5.2729745)
 
-[node name="crowdchar30" parent="crowd" unique_id=1541291521 instance=ExtResource("3_b3oru")]
+[node name="crowdchar30" parent="crowd" unique_id=1541291521 instance=ExtResource("8_045es")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.733151, 0.4999994, 5.563866)
 
-[node name="crowdchar12" parent="crowd" unique_id=745954843 instance=ExtResource("3_b3oru")]
+[node name="crowdchar12" parent="crowd" unique_id=745954843 instance=ExtResource("8_045es")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.06916356, 0.5, 2.0959606)
 
-[node name="crowdchar13" parent="crowd" unique_id=1310239685 instance=ExtResource("3_b3oru")]
+[node name="crowdchar13" parent="crowd" unique_id=1310239685 instance=ExtResource("8_045es")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.93083644, 0.5, 2.0959606)
 
-[node name="crowdchar14" parent="crowd" unique_id=1867979061 instance=ExtResource("3_b3oru")]
+[node name="crowdchar14" parent="crowd" unique_id=1867979061 instance=ExtResource("8_045es")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.7657943, 0.5, 1.8986082)
 
-[node name="crowdchar15" parent="crowd" unique_id=1633768852 instance=ExtResource("3_b3oru")]
+[node name="crowdchar15" parent="crowd" unique_id=1633768852 instance=ExtResource("8_045es")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0691636, 0.5, 2.0959606)
 
-[node name="crowdchar16" parent="crowd" unique_id=933419877 instance=ExtResource("3_b3oru")]
+[node name="crowdchar16" parent="crowd" unique_id=933419877 instance=ExtResource("8_045es")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6587265, 0.49999976, 2.4922662)
 
-[node name="crowdchar34" parent="crowd" unique_id=1082701870 instance=ExtResource("3_b3oru")]
+[node name="crowdchar34" parent="crowd" unique_id=1082701870 instance=ExtResource("8_045es")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4098048, 0.49999952, 2.1637096)
 
-[node name="crowdchar27" parent="crowd" unique_id=369774820 instance=ExtResource("3_b3oru")]
+[node name="crowdchar27" parent="crowd" unique_id=369774820 instance=ExtResource("8_045es")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.55835223, 0.49999976, 2.6953547)
 
-[node name="crowdchar28" parent="crowd" unique_id=901821316 instance=ExtResource("3_b3oru")]
+[node name="crowdchar28" parent="crowd" unique_id=901821316 instance=ExtResource("8_045es")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17128623, 0.49999952, 3.3657238)
 
-[node name="crowdchar29" parent="crowd" unique_id=1068254823 instance=ExtResource("3_b3oru")]
+[node name="crowdchar29" parent="crowd" unique_id=1068254823 instance=ExtResource("8_045es")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3419009, 0.5, 2.7588317)
 
-[node name="crowdchar17" parent="crowd" unique_id=306848411 instance=ExtResource("3_b3oru")]
+[node name="crowdchar17" parent="crowd" unique_id=306848411 instance=ExtResource("8_045es")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5764601, 0.50000024, 1.9172196)
 
-[node name="crowdchar18" parent="crowd" unique_id=1989105858 instance=ExtResource("3_b3oru")]
+[node name="crowdchar18" parent="crowd" unique_id=1989105858 instance=ExtResource("8_045es")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.39465523, 0.5, 4.1651564)
 
-[node name="crowdchar19" parent="crowd" unique_id=715963455 instance=ExtResource("3_b3oru")]
+[node name="crowdchar19" parent="crowd" unique_id=715963455 instance=ExtResource("8_045es")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5391032, 0.5, 4.089593)
 
-[node name="crowdchar20" parent="crowd" unique_id=1933433268 instance=ExtResource("3_b3oru")]
+[node name="crowdchar20" parent="crowd" unique_id=1933433268 instance=ExtResource("8_045es")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4699876, 0.5, 3.0959606)
 
-[node name="crowdchar21" parent="crowd" unique_id=119773212 instance=ExtResource("3_b3oru")]
+[node name="crowdchar21" parent="crowd" unique_id=119773212 instance=ExtResource("8_045es")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0805335, 0.5, 4.3867774)
 
-[node name="crowdchar23" parent="crowd" unique_id=1844533363 instance=ExtResource("3_b3oru")]
+[node name="crowdchar23" parent="crowd" unique_id=1844533363 instance=ExtResource("8_045es")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.8070946, 0.49999976, 4.03687)
 
-[node name="crowdchar24" parent="crowd" unique_id=175160398 instance=ExtResource("3_b3oru")]
+[node name="crowdchar24" parent="crowd" unique_id=175160398 instance=ExtResource("8_045es")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.495399, 0.49999976, 3.084415)
 
-[node name="crowdchar25" parent="crowd" unique_id=748222052 instance=ExtResource("3_b3oru")]
+[node name="crowdchar25" parent="crowd" unique_id=748222052 instance=ExtResource("8_045es")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2797784, 0.5, 3.3855617)
 
-[node name="crowdchar26" parent="crowd" unique_id=823868482 instance=ExtResource("3_b3oru")]
+[node name="crowdchar26" parent="crowd" unique_id=823868482 instance=ExtResource("8_045es")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.2748675, 0.5, 3.0959606)
 
-[node name="crowdchar22" parent="crowd" unique_id=143676580 instance=ExtResource("3_b3oru")]
+[node name="crowdchar22" parent="crowd" unique_id=143676580 instance=ExtResource("8_045es")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.383861, 0.49999952, 3.4431763)
 
-[node name="crowdchar32" parent="crowd" unique_id=215426304 instance=ExtResource("3_b3oru")]
+[node name="crowdchar32" parent="crowd" unique_id=215426304 instance=ExtResource("8_045es")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.0164332, 0.49999952, 2.960037)
+
+[node name="CrowdManager" type="Node" parent="." unique_id=2009711495]
+script = ExtResource("8_omn1t")
+
+[node name="CrowdAnimator" type="AnimationPlayer" parent="CrowdManager" unique_id=994830917]

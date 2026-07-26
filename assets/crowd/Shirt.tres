@@ -1,6 +1,7 @@
 [gd_resource type="StandardMaterial3D" format=3 uid="uid://buyldulyp77ns"]
 
 [resource]
+resource_local_to_scene = true
 resource_name = "Shirt"
 cull_mode = 2
 albedo_color = Color(0.19804868, 0, 0.3736452, 1)

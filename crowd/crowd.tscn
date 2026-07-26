@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://pybfbku7se80"]
+
+[ext_resource type="PackedScene" uid="uid://jtuip5htm07q" path="res://assets/crowd.glb" id="1_ygftt"]
+
+[node name="Crowd" type="Node3D" unique_id=1052736862]
+
+[node name="mesh" parent="." unique_id=1672972515 instance=ExtResource("1_ygftt")]

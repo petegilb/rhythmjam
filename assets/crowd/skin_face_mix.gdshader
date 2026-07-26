@@ -1,7 +1,7 @@
 shader_type spatial;
 
 // --- Skin base ---
-uniform vec4 skin_color : source_color = vec4(1.0, 0.8, 0.7, 1.0);
+instance uniform vec4 skin_color : source_color = vec4(1.0, 0.8, 0.7, 1.0);
 
 // --- Face decal texture (RGBA, alpha = mask) ---
 uniform sampler2D face_tex : source_color, filter_linear_mipmap, hint_default_transparent;

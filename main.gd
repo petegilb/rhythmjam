@@ -39,7 +39,6 @@ var spawn_idx = 0
 # game state
 var game_over = false
 var num_success := 0
-var num_fail := 0
 const WIN_PERCENTAGE = 0.7
 var active_ui = {}
 var fuse = 100.0
@@ -89,7 +88,6 @@ func set_song(input_song: AudioStreamMP3, song_path: String) -> void:
 	active_input_beats_sec = []
 	active_input_beat_idx = 0
 	spawn_idx = 0
-	num_fail = 0
 	num_success = 0
 	music_player.stream = input_song
 	bpm = input_song.bpm
@@ -214,7 +212,7 @@ func update_song(delta: float):
 		else:
 			play_sfx(miss_sfx, 0.7)
 			print("miss")
-			num_fail += 1
+			fuse -= MISS_PENALTY
 
 func song_ended() -> void:
 	game_over = true
