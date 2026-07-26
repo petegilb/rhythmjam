@@ -216,7 +216,7 @@ func game_ended() -> void:
 
 func input_miss() -> void:
 	set_face(1.0)
-	await get_tree().create_timer(0.25).timeout
+	await get_tree().create_timer(main.beat_duration / 2).timeout
 	set_face(0.0)
 
 func set_face(idx: float) -> void:

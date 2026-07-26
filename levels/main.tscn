@@ -10,8 +10,10 @@
 [ext_resource type="PackedScene" uid="uid://b3erx0sva6x6y" path="res://assets/record.glb" id="5_xdh4e"]
 [ext_resource type="PackedScene" uid="uid://c0onclnmjka4m" path="res://scenes/fuse_cursor.tscn" id="6_jw1n3"]
 [ext_resource type="PackedScene" uid="uid://pybfbku7se80" path="res://crowd/crowd.tscn" id="7_xdh4e"]
+[ext_resource type="AudioStream" uid="uid://bwb73kr4eeo2w" path="res://music/RhythmGame Menu.mp3" id="10_6yxbg"]
 [ext_resource type="Theme" uid="uid://kjkyjl1nqctl" path="res://fonts/default_theme.tres" id="11_xdh4e"]
 [ext_resource type="Script" uid="uid://c8ksy8otq5ggq" path="res://volume_slider.gd" id="12_c7dyn"]
+[ext_resource type="Script" uid="uid://c321c7g70v06b" path="res://calibration_input.gd" id="13_calib"]
 
 [node name="Main" type="Node2D" unique_id=1758961681]
 script = ExtResource("1_wdj6m")
@@ -26,6 +28,9 @@ max_polyphony = 2
 
 [node name="Level1" parent="." unique_id=359005921 instance=ExtResource("3_l8qe7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.607858)
+
+[node name="StartMusicPlayer" type="AudioStreamPlayer" parent="." unique_id=1022686724]
+stream = ExtResource("10_6yxbg")
 
 [node name="EndMusicPlayer" type="AudioStreamPlayer" parent="." unique_id=652977411]
 stream = ExtResource("4_m1504")
@@ -95,5 +100,39 @@ offset_bottom = -4.0
 theme = ExtResource("11_xdh4e")
 theme_override_font_sizes/font_size = 24
 text = "Volume"
+
+[node name="CalibrationInput" type="SpinBox" parent="CanvasLayer" unique_id=1962095830]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -230.0
+offset_top = -80.0
+offset_right = -11.0
+offset_bottom = -50.0
+grow_horizontal = 0
+grow_vertical = 0
+min_value = -0.5
+max_value = 0.5
+step = 0.005
+value = 0.5
+suffix = "s"
+script = ExtResource("13_calib")
+
+[node name="Label" type="Label" parent="CanvasLayer/CalibrationInput" unique_id=445672367]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.507
+anchor_top = 0.5
+anchor_right = 0.507
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -35.0
+offset_right = 100.0
+offset_bottom = -4.0
+theme = ExtResource("11_xdh4e")
+theme_override_font_sizes/font_size = 24
+text = "Calibration"
 
 [connection signal="drag_ended" from="CanvasLayer/VolumeSlider" to="CanvasLayer/VolumeSlider" method="_on_drag_ended"]

@@ -11,6 +11,7 @@ signal game_ended
 @onready var music_player: AudioStreamPlayer = $MusicPlayer
 @onready var sfx_player: AudioStreamPlayer = $SFXPlayer1
 @onready var end_music_player: AudioStreamPlayer = $EndMusicPlayer
+@onready var start_music_player: AudioStreamPlayer = $StartMusicPlayer
 @onready var level = $Level1
 @onready var anim_player: AnimationPlayer = $Level1/AnimationPlayer
 @onready var bomb_sfx: AudioStreamPlayer2D = $Level1/%BombSounds
@@ -27,6 +28,8 @@ signal game_ended
 @onready var fuse_particle2D: GPUParticles2D = $Ui/GameUI/FuseCursor
 @onready var preload_location: Node3D = $Level1/PreloadLocation
 @onready var loading_rect: Control = $CanvasLayer/LoadingRect
+@onready var start_menu: Control = $Ui/CanvasLayer/StartMenu
+@onready var start_button: Button = $Ui/CanvasLayer/StartMenu/StartButton
 
 const UI_NOTE_SPEED = 1.0
 const INPUT_MARGIN = 0.08
@@ -44,6 +47,9 @@ var current_song_position: float = 0.0
 var active_beat_position = -1
 var spawn_idx = 0
 var last_beat_time = 0.0
+# audio sync (system-clock method, see Godot "Sync the gameplay with audio" docs)
+var time_begin: float = 0.0
+var time_delay: float = 0.0
 
 # game state
 var game_over = false
@@ -136,6 +142,9 @@ func start_song():
 	play_sfx(one_two_three)
 	await sfx_player.finished
 	music_player.play()
+	# latch the audio clock once; gameplay then runs off the smooth system clock
+	time_begin = Time.get_ticks_usec()
+	time_delay = AudioServer.get_time_to_next_mix() + AudioServer.get_output_latency()
 	anim_player.play("bombfly")
 	play_sfx(fall_sfx, 0.3)
 	bomb_sfx.play()
@@ -159,9 +168,13 @@ func update_song(delta: float):
 		song_ended()
 		return
 	
-	current_song_position = music_player.get_playback_position() + AudioServer.get_time_since_last_mix()
-	# Compensate for output latency. (https://docs.godotengine.org/en/stable/tutorials/audio/sync_with_audio.html)
-	current_song_position -= AudioServer.get_output_latency()
+	# system-clock sync (recommended for rhythm games):
+	# https://docs.godotengine.org/en/stable/tutorials/audio/sync_with_audio.html
+	current_song_position = (Time.get_ticks_usec() - time_begin) / 1000000.0
+	current_song_position -= time_delay
+	# player-set sync calibration (positive advances the clock -> notes earlier)
+	current_song_position += Global.audio_calibration
+	current_song_position = max(0.0, current_song_position)
 
 	# end on the same clock the notes use bc the finish signal sometimes is too fast
 	if last_beat_time > 0.0 and current_song_position >= last_beat_time + get_input_margin():
@@ -243,7 +256,7 @@ func update_song(delta: float):
 		if active_beat_position != -1 and active_ui.has(hit_idx) and active_ui[hit_idx].visible:
 			print("ok!")
 			input_success.emit()
-			play_sfx(ok_sfx, 0.5)
+			play_sfx(ok_sfx, 0.25)
 			num_success += 1
 			active_ui[hit_idx].visible = false
 			hit_pause()
@@ -313,6 +326,12 @@ func _ready() -> void:
 	fuse_particle.emitting = false
 	fuse_particle2D.emitting = false
 	set_song(song1, song1_json_path)
+	
+	start_menu.visible = true
+	start_music_player.play()
+	await start_button.pressed
+	start_menu.visible = false
+	start_music_player.stop()
 	start_song()
 
 func _process(delta: float) -> void:
