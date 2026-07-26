@@ -41,6 +41,7 @@ var next_beat_position = 0
 var current_song_position: float = 0.0
 var active_beat_position = -1
 var spawn_idx = 0
+var last_beat_time = 0.0
 
 # game state
 var game_over = false
@@ -115,7 +116,8 @@ func set_song(input_song: AudioStreamMP3, song_path: String) -> void:
 		var beat_float = float(note.beat)
 		active_input_beats.append(beat_float)
 		active_input_beats_sec.append(beat_float*beat_duration)
-		
+	last_beat_time = active_input_beats_sec.max() if not active_input_beats_sec.is_empty() else 0.0
+
 	print("set song to %s with bpm %d and beat duration %f with fuse speed %f" \
 	 	% [input_song.resource_path, bpm, beat_duration, fuse_speed])
 	print(active_input_beats_sec)
@@ -158,6 +160,13 @@ func update_song(delta: float):
 	current_song_position = music_player.get_playback_position() + AudioServer.get_time_since_last_mix()
 	# Compensate for output latency. (https://docs.godotengine.org/en/stable/tutorials/audio/sync_with_audio.html)
 	current_song_position -= AudioServer.get_output_latency()
+
+	# end on the same clock the notes use bc the finish signal sometimes is too fast
+	if last_beat_time > 0.0 and current_song_position >= last_beat_time + get_input_margin():
+		music_player.stop()
+		song_ended()
+		return
+
 	while spawn_idx < active_input_beats_sec.size() \
 			and current_song_position >= active_input_beats_sec[spawn_idx] - get_ui_note_speed():
 		var new_ui_note = ui_rhythm.duplicate()
@@ -246,8 +255,14 @@ func update_song(delta: float):
 				fuse -= MISS_PENALTY
 
 func song_ended() -> void:
+	if game_over:
+		return
 	game_over = true
 	bomb_sfx.stop()
+	# clear any notes still travelling so the end screen isn't cluttered
+	for note in active_ui.values():
+		note.queue_free()
+	active_ui.clear()
 	var total_beats: int = active_input_beats.size()
 	var success_percentage = float(num_success) / float(total_beats)
 	print("final percentage %f" % success_percentage)
