@@ -21,6 +21,7 @@ signal game_ended
 @onready var ui_fuse: TextureProgressBar = $Ui/GameUI/Fuse
 @onready var ui_win_screen = $Ui/CanvasLayer/WinScreen
 @onready var ui_lose_screen = $Ui/CanvasLayer/LoseScreen
+@onready var fuse_particle: GPUParticles3D = $Level1/turntable/record/bomb/FuseParticle
 
 const UI_NOTE_SPEED = 1.0
 const INPUT_MARGIN = 0.08
@@ -189,7 +190,9 @@ func update_song(delta: float):
 	if fuse_pause <= 0.0:
 		fuse -= fuse_speed * delta
 		ui_fuse.value = fuse
+		fuse_particle.emitting = true
 	else:
+		fuse_particle.emitting = false
 		fuse_pause -= delta
 		fuse_pause = clamp(fuse_pause, 0.0, HIT_PAUSE)
 		if fuse_pause == 0.0:
