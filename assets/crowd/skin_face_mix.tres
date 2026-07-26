@@ -1,13 +1,10 @@
 [gd_resource type="ShaderMaterial" format=3 uid="uid://c6luhqy4hv6om"]
 
 [ext_resource type="Shader" uid="uid://du1usxsvmybno" path="res://assets/crowd/skin_face_mix.gdshader" id="1_25vn7"]
-[ext_resource type="Texture2D" uid="uid://cm18pcxfktkm3" path="res://assets/crowd_FaceHappy.png" id="2_t4bk8"]
 
 [resource]
 render_priority = 0
 shader = ExtResource("1_25vn7")
-shader_parameter/skin_color = Color(0.99999815, 0.63387084, 0.4459719, 1)
-shader_parameter/face_tex = ExtResource("2_t4bk8")
 shader_parameter/face_uv_scale = Vector2(1, 1)
 shader_parameter/face_uv_offset = Vector2(0, 0)
 shader_parameter/face_opacity = 1.0

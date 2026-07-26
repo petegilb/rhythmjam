@@ -5,6 +5,8 @@ signal song_beat(last_beat)
 signal enter_beat
 signal exit_beat
 signal input_success
+signal input_miss
+signal game_ended
 
 @onready var music_player: AudioStreamPlayer = $MusicPlayer
 @onready var sfx_player: AudioStreamPlayer = $SFXPlayer1
@@ -44,7 +46,7 @@ var active_ui = {}
 var fuse = 100.0
 var fuse_speed = 1.0
 var fuse_pause = 0.0
-const MISS_PENALTY = 10.0
+const MISS_PENALTY = 5.0
 const HIT_PAUSE = 0.5
 
 # sfx
@@ -172,6 +174,7 @@ func update_song(delta: float):
 		var hit_idx = active_input_beats_sec.find(active_beat_position)
 		if active_ui[hit_idx].visible:
 			play_sfx(disappointment)
+			input_miss.emit()
 			fuse -= MISS_PENALTY
 		active_beat_position = -1
 		exit_beat.emit()
@@ -232,12 +235,13 @@ func song_ended() -> void:
 		ui_win_screen.visible = true
 		ui_game.visible = false
 		end_music_player.play()
-		print("show ui here.")
+		game_ended.emit()
 	else:
 		record.rotation = Vector3(0, 0, 0)
 		anim_player.play("EXPLODE")
 		play_sfx(evil_laugh_sfx)
 		print("you lose! the bomb exploded!")
+		game_ended.emit()
 		await anim_player.animation_finished
 		ui_lose_screen.visible = true
 		ui_game.visible = false

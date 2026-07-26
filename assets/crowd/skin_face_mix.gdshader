@@ -3,8 +3,9 @@ shader_type spatial;
 // --- Skin base ---
 instance uniform vec4 skin_color : source_color = vec4(1.0, 0.8, 0.7, 1.0);
 
-// --- Face decal texture (RGBA, alpha = mask) ---
-uniform sampler2D face_tex : source_color, filter_linear_mipmap, hint_default_transparent;
+// --- Face decal textures (RGBA, alpha = mask), one expression per layer ---
+uniform sampler2DArray face_tex : source_color, filter_linear;
+instance uniform float face_index = 0.0;
 uniform vec2 face_uv_scale = vec2(1.0, 1.0);
 uniform vec2 face_uv_offset = vec2(0.0, 0.0);
 uniform float face_opacity : hint_range(0.0, 1.0) = 1.0;
@@ -21,7 +22,7 @@ uniform bool use_normal_map = false;
 
 void fragment() {
 	vec2 face_uv = UV * face_uv_scale + face_uv_offset;
-	vec4 face = texture(face_tex, face_uv);
+	vec4 face = texture(face_tex, vec3(face_uv, face_index));
 
 	// Blend face over the flat skin color using the texture's alpha
 	ALBEDO = mix(skin_color.rgb, face.rgb, face.a * face_opacity);

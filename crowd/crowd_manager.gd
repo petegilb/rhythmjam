@@ -47,6 +47,12 @@ var SKIN_COLORS = [
 	Color.from_rgba8(141, 85, 36),
 	Color.html("#5C4033")
 ]
+const SKIN_MATERIAL: ShaderMaterial = preload("res://assets/crowd/skin_face_mix.tres")
+const FACE_TEXTURES: Array[Texture2D] = [
+	preload("res://assets/FaceHappy.png"),
+	preload("res://assets/FaceMad.png"),
+]
+
 const SKIN_MAT_IDX = 0
 const SHIRT_MAT_IDX = 1
 const PANTS_MAT_IDX = 2
@@ -67,17 +73,42 @@ const SUCCESS_JUMP_HEIGHT_MIN = 0.05
 const SUCCESS_JUMP_HEIGHT_MAX = 0.4
 const SUCCESS_HAND_HEIGHT_MIN = 0.05
 const SUCCESS_HAND_HEIGHT_MAX = 0.4
+const SUCCESS_HAND_CHANCE = 0.5
+
+# crowd animation state. changed to refcounted so we can tween it
+class Bobber extends RefCounted:
+	var skeleton: Skeleton3D
+	var body: Node3D
+	var mesh: MeshInstance3D
+	# cached rest poses we offset from
+	var look_basis: Basis
+	var head_origin: Vector3
+	var lhand_rest: Transform3D
+	var rhand_rest: Transform3D
+	var rest_y: float
+	var phase: float
+	var amount: float
+	var bounce: float
+	# tweened on a successful input, read back in _process
+	var jump: float = 0.0
+	var lhand_raise: float = 0.0
+	var rhand_raise: float = 0.0
 
 var crowd_members: Array = []
 # per-member bob state, built in _ready so _process never has to get_node
-var bobbers: Array[Dictionary] = []
+var bobbers: Array[Bobber] = []
 
 func _ready() -> void:
 	main.input_success.connect(input_success)
+	main.game_ended.connect(game_ended)
+	main.input_miss.connect(input_miss)
 	
 	# get all crowd members
 	crowd_members = crowd_parent.get_children()
-	
+
+	# the material is shared, so the face set only needs uploading once
+	SKIN_MATERIAL.set_shader_parameter("face_tex", build_face_array())
+
 	# set the materials for each person
 	for person: Node3D in crowd_members:
 		var mesh: MeshInstance3D = person.get_node("mesh/Rig/Skeleton3D/Char1")
@@ -104,20 +135,35 @@ func _ready() -> void:
 		if dir.is_zero_approx():
 			continue
 
-		var b := Basis.looking_at(-dir, Vector3.UP)
-		skeleton.set_bone_global_pose(HEAD_BONE_IDX, Transform3D(b, pose.origin))
+		var basis := Basis.looking_at(-dir, Vector3.UP)
+		skeleton.set_bone_global_pose(HEAD_BONE_IDX, Transform3D(basis, pose.origin))
 
 		# cache what the bob needs
-		bobbers.append({
-			"skeleton": skeleton,
-			"body": person,
-			"look_basis": b,
-			"head_origin": pose.origin,
-			"rest_y": person.position.y,
-			"phase": randf_range(-BOB_PHASE_JITTER, BOB_PHASE_JITTER),
-			"amount": randf_range(BOB_AMOUNT_MIN, BOB_AMOUNT_MAX),
-			"bounce": randf_range(0.0, BOUNCE_MAX),
-		})
+		var bobber := Bobber.new()
+		bobber.skeleton = skeleton
+		bobber.body = person
+		bobber.mesh = mesh
+		bobber.look_basis = basis
+		bobber.head_origin = pose.origin
+		bobber.lhand_rest = skeleton.get_bone_global_pose(LHAND_BONE_IDX)
+		bobber.rhand_rest = skeleton.get_bone_global_pose(RHAND_BONE_IDX)
+		bobber.rest_y = person.position.y
+		bobber.phase = randf_range(-BOB_PHASE_JITTER, BOB_PHASE_JITTER)
+		bobber.amount = randf_range(BOB_AMOUNT_MIN, BOB_AMOUNT_MAX)
+		bobber.bounce = randf_range(0.0, BOUNCE_MAX)
+		bobbers.append(bobber)
+
+# pack the faces into one array texture. layers must share a size and format
+func build_face_array() -> Texture2DArray:
+	var images: Array[Image] = []
+	for texture in FACE_TEXTURES:
+		var image: Image = texture.get_image().duplicate()
+		image.convert(Image.FORMAT_RGBA8)
+		image.generate_mipmaps()
+		images.append(image)
+	var array := Texture2DArray.new()
+	array.create_from_images(images)
+	return array
 
 func _process(_delta: float) -> void:
 	if main.beat_duration <= 0.0:
@@ -132,19 +178,44 @@ func _process(_delta: float) -> void:
 		skeleton.set_bone_global_pose(HEAD_BONE_IDX, Transform3D(
 			bobber.look_basis * Basis(Vector3.RIGHT, bob * bobber.amount),
 			bobber.head_origin))
-		var body: Node3D = bobber.body
-		body.position.y = bobber.rest_y - bob * bobber.bounce
+		bobber.body.position.y = bobber.rest_y - bob * bobber.bounce + bobber.jump
+		raise_bone(skeleton, LHAND_BONE_IDX, bobber.lhand_rest, bobber.lhand_raise)
+		raise_bone(skeleton, RHAND_BONE_IDX, bobber.rhand_rest, bobber.rhand_raise)
+
+# lift a bone straight up from its rest pose
+func raise_bone(skeleton: Skeleton3D, bone_idx: int, rest: Transform3D, height: float) -> void:
+	skeleton.set_bone_global_pose(bone_idx, Transform3D(rest.basis, rest.origin + Vector3.UP * height))
 
 func input_success() -> void:
+	var half_beat: float = main.beat_duration / 2.0
 	for bobber in bobbers:
-		var body: Node3D = bobber.body
-		var tween = get_tree().create_tween()
-		var jump_y = bobber.rest_y + randf_range(SUCCESS_JUMP_HEIGHT_MIN, SUCCESS_JUMP_HEIGHT_MAX)
-		tween.tween_property(body, "position:y", jump_y, main.beat_duration/2.0)
-		tween.tween_property(body, "position:y", bobber.rest_y, main.beat_duration/2.0)
-		
-		#var skeleton: Skeleton3D = bobber.skeleton
-		#var lhand_base: Transform3D = skeleton.get_bone_global_pose(LHAND_BONE_IDX)
-		#var lhand_tween = get_tree().create_tween().set_trans(Tween.TRANS_SINE)
-		#lhand_tween.tween_property()
-		
+		bob_crowd(bobber, "jump", half_beat, randf_range(SUCCESS_JUMP_HEIGHT_MIN, SUCCESS_JUMP_HEIGHT_MAX))
+		if randf() < SUCCESS_HAND_CHANCE:
+			bob_crowd(bobber, "lhand_raise", half_beat,
+				randf_range(SUCCESS_HAND_HEIGHT_MIN, SUCCESS_HAND_HEIGHT_MAX))
+		if randf() < SUCCESS_HAND_CHANCE:
+			bob_crowd(bobber, "rhand_raise", half_beat,
+				randf_range(SUCCESS_HAND_HEIGHT_MIN, SUCCESS_HAND_HEIGHT_MAX))
+
+func bob_crowd(bobber: Bobber, property: String, half_beat: float, peak: float, loops:bool = false) -> void:
+	var tween := create_tween().set_trans(Tween.TRANS_SINE)
+	if loops:
+		tween.set_loops()
+	tween.tween_property(bobber, property, peak, half_beat)
+	tween.tween_property(bobber, property, 0.0, half_beat)
+	
+func game_ended() -> void:
+	if main.game_over and main.ui_win_screen.visible:
+		for bobber in bobbers:
+			bob_crowd(bobber, "jump", 0.4, randf_range(SUCCESS_JUMP_HEIGHT_MIN, SUCCESS_JUMP_HEIGHT_MAX), true)
+	else:
+		set_face(1.0)
+
+func input_miss() -> void:
+	set_face(1.0)
+	await get_tree().create_timer(0.25).timeout
+	set_face(0.0)
+
+func set_face(idx: float) -> void:
+	for bobber in bobbers:
+		bobber.mesh.set_instance_shader_parameter("face_index", idx)
