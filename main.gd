@@ -224,7 +224,7 @@ func update_song(delta: float):
 		music_player.stop()
 		song_ended()
 	
-	if Input.is_action_just_pressed("ui_right"):
+	if Input.is_action_just_pressed("ui_right") or Input.is_action_just_pressed("ui_cancel"):
 		fuse = 0.0
 	
 	if Input.is_action_just_pressed("space"):

@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://c0onclnmjka4m" path="res://scenes/fuse_cursor.tscn" id="6_jw1n3"]
 [ext_resource type="PackedScene" uid="uid://pybfbku7se80" path="res://crowd/crowd.tscn" id="7_xdh4e"]
 [ext_resource type="Theme" uid="uid://kjkyjl1nqctl" path="res://fonts/default_theme.tres" id="11_xdh4e"]
+[ext_resource type="Script" uid="uid://c8ksy8otq5ggq" path="res://volume_slider.gd" id="12_c7dyn"]
 
 [node name="Main" type="Node2D" unique_id=1758961681]
 script = ExtResource("1_wdj6m")
@@ -63,3 +64,36 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("11_xdh4e")
 text = "Preloading Shaders..."
+
+[node name="VolumeSlider" type="HSlider" parent="CanvasLayer" unique_id=1962095829]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -230.0
+offset_top = -32.0
+offset_right = -11.0
+offset_bottom = -10.0
+grow_horizontal = 0
+grow_vertical = 0
+max_value = 1.0
+step = 0.0
+script = ExtResource("12_c7dyn")
+
+[node name="Label" type="Label" parent="CanvasLayer/VolumeSlider" unique_id=445672366]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.507
+anchor_top = 0.5
+anchor_right = 0.507
+anchor_bottom = 0.5
+offset_left = -49.033005
+offset_top = -35.0
+offset_right = 45.966995
+offset_bottom = -4.0
+theme = ExtResource("11_xdh4e")
+theme_override_font_sizes/font_size = 24
+text = "Volume"
+
+[connection signal="drag_ended" from="CanvasLayer/VolumeSlider" to="CanvasLayer/VolumeSlider" method="_on_drag_ended"]
